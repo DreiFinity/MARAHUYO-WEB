@@ -17,6 +17,15 @@
   .ephesis {
     font-family: 'Ephesis', cursive;
   }
+
+   input[type="date"].custom-date {
+    color: black;
+    background: transparent;
+    background-color: white;
+    opacity: 0.5;
+  }
+  
+
   </style>
 
   <script>
@@ -126,7 +135,7 @@
 
    
 <!-- Booking Bar -->
-<div class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6 text-gray-900 border border-white rounded-md bg-opacity-10 p-4 bg-gray-800 relative z-0">
+{{-- <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6 text-gray-900 border border-white rounded-md bg-opacity-10 p-4 bg-gray-800 relative z-0">
 
   <!-- Check in -->
   <div class="relative flex flex-col items-start">
@@ -195,70 +204,195 @@
       Check Rates
     </button>
   </div>
-</div>
+</div> --}}
 
-<!-- Scripts -->
+<form action="{{ route('rooms.available') }}" method="GET" id="bookingForm">
+  <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6 text-gray-900 border border-white rounded-md bg-opacity-10 p-4 bg-gray-800 relative z-0">
+
+    <!-- Check in -->
+    <div class="flex flex-col items-start">
+      <label for="checkinDate" class="text-white font-semibold mb-1">Check in</label>
+      <input type="date" id="checkinDate" name="checkin"
+        class="custom-date border border-gray-300 rounded-md px-3 py-2 bg-white shadow-md text-gray-900 w-full" required />
+    </div>
+
+    <!-- Check out -->
+    <div class="flex flex-col items-start">
+      <label for="checkoutDate" class="text-white font-semibold mb-1">Check out</label>
+      <input type="date" id="checkoutDate" name="checkout"
+        class="custom-date border border-gray-300 rounded-md px-3 py-2 bg-white shadow-md text-gray-900 w-full" required />
+    </div>
+
+    <!-- Rooms & Guests -->
+    <div class="relative md:col-span-2 mt-2">
+      <div onclick="toggleGuestModal()" class="flex flex-col cursor-pointer">
+        <div class="flex items-center space-x-2">
+          <span class="text-white font-semibold">Rooms & Guests</span>
+          <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+          </svg>
+        </div>
+        <span id="guestLabel" class="text-sm text-white opacity-70 mt-1">
+          <span id="roomsCount">1</span> Room, <span id="guestsCount">2</span> Guests
+        </span>
+      </div>
+
+      <!-- Modal -->
+      <div id="guestModal" class="absolute mt-2 p-4 bg-white rounded-md shadow-lg hidden z-20 text-sm w-60">
+        <div class="flex justify-between items-center mb-3">
+          <span class="font-medium text-gray-700">Rooms</span>
+          <div class="flex items-center space-x-2">
+            <button type="button" onclick="adjustCount('rooms', -1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">−</button>
+            <span id="roomsCount" class="w-6 text-center">1</span>
+            <button type="button" onclick="adjustCount('rooms', 1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
+          </div>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="font-medium text-gray-700">Guests</span>
+          <div class="flex items-center space-x-2">
+            <button type="button" onclick="adjustCount('guests', -1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">−</button>
+            <span id="guestsCount" class="w-6 text-center">2</span>
+            <button type="button" onclick="adjustCount('guests', 1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="flex justify-center md:justify-end mt-2">
+      <button type="submit" class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition">
+        Check Rates
+      </button>
+    </div>
+  </div>
+
+  <!-- Hidden Inputs for Rooms & Guests -->
+  <input type="hidden" name="rooms" id="roomsInput" value="1">
+  <input type="hidden" name="guests" id="guestsInput" value="2">
+
+  @if(session('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <span class="block sm:inline">{{ session('error') }}</span>
+        </div>
+  @endif
+</form>
+
 <script>
-  function toggleDatePicker(inputId) {
-    const input = document.getElementById(inputId);
-    input.classList.toggle('hidden');
-    input.focus();
-  }
-
-  function updateDateLabel(inputId, labelId) {
-    const input = document.getElementById(inputId);
-    const label = document.getElementById(labelId);
-    if (input && label && input.value) {
-      const formatted = new Date(input.value).toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      });
-      label.textContent = formatted;
-      input.classList.add('hidden'); // 🔴 Hide picker after selection
+// Form handling
+document.addEventListener('DOMContentLoaded', function() {
+    // Form validation
+    const bookingForm = document.getElementById('bookingForm');
+    
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default submission
+            
+            // Get form elements
+            const checkin = document.getElementById('checkinDate');
+            const checkout = document.getElementById('checkoutDate');
+            
+            // Validate dates only if both elements exist
+            if (checkin && checkout) {
+                if (validateDates(checkin.value, checkout.value)) {
+                    this.submit(); // Submit form if validation passes
+                }
+            } else {
+                console.error('Check-in or check-out input not found');
+            }
+        });
     }
-  }
 
-  function toggleGuestModal() {
-    const modal = document.getElementById("guestModal");
-    modal.classList.toggle("hidden");
-  }
+    // Initialize guest counter handlers
+    initGuestHandlers();
+});
 
-  function adjustCount(type, delta) {
-    const countId = type + "Count";
-    const countEl = document.getElementById(countId);
-    let count = parseInt(countEl.textContent);
-    count = Math.max(1, count + delta); // prevent less than 1
-    countEl.textContent = count;
-
-    // Update label
-    const rooms = document.getElementById("roomsCount").textContent;
-    const guests = document.getElementById("guestsCount").textContent;
-    document.getElementById("guestLabel").textContent = `${rooms} Room${rooms > 1 ? 's' : ''}, ${guests} Guest${guests > 1 ? 's' : ''}`;
-  }
-
-  // Optional: close guest modal if clicking outside
-  document.addEventListener('click', function(event) {
-    const modal = document.getElementById("guestModal");
-    const trigger = event.target.closest('[onclick="toggleGuestModal()"]');
-    if (!modal.contains(event.target) && !trigger) {
-      modal.classList.add("hidden");
+function validateDates(checkin, checkout) {
+    if (!checkin || !checkout) {
+        alert('Please select both check-in and check-out dates');
+        return false;
     }
-  });
+
+    const checkinDate = new Date(checkin);
+    const checkoutDate = new Date(checkout);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (checkinDate < today) {
+        alert('Check-in date cannot be in the past');
+        return false;
+    }
+
+    if (checkoutDate <= checkinDate) {
+        alert('Check-out date must be after check-in date');
+        return false;
+    }
+
+    return true;
+}
+
+function initGuestHandlers() {
+    // Guest Modal Toggle
+    const guestModalTrigger = document.querySelector('[onclick="toggleGuestModal()"]');
+    const guestModal = document.getElementById('guestModal');
+    
+    if (guestModalTrigger && guestModal) {
+        guestModalTrigger.addEventListener('click', function() {
+            guestModal.classList.toggle('hidden');
+        });
+    }
+
+    // Close modal when clicking outside
+    document.addEventListener('click', function(event) {
+        if (guestModal && !guestModal.contains(event.target) && 
+            !event.target.closest('[onclick="toggleGuestModal()"]')) {
+            guestModal.classList.add('hidden');
+        }
+    });
+}
+
+function adjustCount(type, delta) {
+    const countElements = document.querySelectorAll(`#${type}Count`);
+    const inputElement = document.getElementById(`${type}Input`);
+    const labelElement = document.getElementById('guestLabel');
+
+    if (!countElements.length || !inputElement || !labelElement) return;
+
+    let count = parseInt(countElements[0].textContent);
+    
+    // Apply limits
+    if (type === 'rooms') {
+        count = Math.max(1, Math.min(5, count + delta));
+    } else if (type === 'guests') {
+        count = Math.max(1, Math.min(10, count + delta));
+    }
+
+    // Update all elements with same ID
+    countElements.forEach(el => el.textContent = count);
+    inputElement.value = count;
+    updateGuestLabel();
+}
+
+function updateGuestLabel() {
+    const rooms = document.querySelector('#roomsCount')?.textContent || '1';
+    const guests = document.querySelector('#guestsCount')?.textContent || '2';
+    const label = document.getElementById('guestLabel');
+    
+    if (label) {
+        label.textContent = `${rooms} Room${rooms > 1 ? 's' : ''}, ${guests} Guest${guests > 1 ? 's' : ''}`;
+    }
+}
 </script>
 
 
 
-  </div>
+</div>
 </section>
 
 
 <section class="mt-32 mx-5 md:mx-20  gap-5">
  
- 
-  <div class="dm-sans flex flex-col gap-12" id="classic">
+  <div class="dm-sans flex flex-col gap-12" id="room-sample">
     <div class="flex flex-col md:flex-row gap-8 mb-20">
-      
       
       <div class="md:w-1/2">
         <img class="w-auto h-100 object-cover transition-all duration-300 transform shadow-md hover:shadow-lg hover:scale-110 rounded-lg" src="images/hero2.png" alt="Classic Room">
@@ -330,17 +464,7 @@
  
   
 </section>
- 
 
-
-
-<script>
-  function toggleDatePicker(id) {
-    const input = document.getElementById(id);
-    input.classList.toggle('hidden');
-    input.focus(); // Optional: immediately open calendar
-  }
-</script>
 
 <!-- Testimonials Section -->
     <div class="bg-white py-16">
@@ -917,105 +1041,7 @@
     </div>
 
     
-    <!-- Footer -->
-    <footer class="bg-[#056594] text-white">
-        <div class="container mx-auto px-6 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                
-                <!-- Brand Section -->
-                <div class="md:col-span-1">
-                    <div class="flex items-center mb-4">
-                        <!-- Palm Tree Icon -->
-                        <div class="mr-3">
-                            <img src="images/logo-white.png" alt="">
-                        </div>
-                        <div>
-                            <h2 class="text-2xl font-bold">MARAHUYO</h2>
-                            <p class="text-sm opacity-90">HOTEL & RESORT</p>
-                        </div>
-                    </div>
-                    <div class="text-sm opacity-80 space-y-1">
-                        <p>Island Garden City of Samal, Davao del Norte, Philippines</p>
-                        <p>marahuyohotel@gmail.com</p>
-                    </div>
-                </div>
-
-                <!-- Find and Book Section -->
-                <div class="md:col-span-1">
-                    <h3 class="text-lg font-semibold mb-4">Find and Book</h3>
-                    <ul class="space-y-2 text-sm opacity-90">
-                        <li><a href="#" class="hover:text-blue-200 transition-colors duration-200">Rooms</a></li>
-                        <li><a href="#" class="hover:text-blue-200 transition-colors duration-200">Suites</a></li>
-                        <li><a href="#" class="hover:text-blue-200 transition-colors duration-200">Dining</a></li>
-                    </ul>
-                </div>
-
-                <!-- About Us Section -->
-                <div class="md:col-span-1">
-                    <h3 class="text-lg font-semibold mb-4">About Us</h3>
-                    <ul class="space-y-2 text-sm opacity-90">
-                        <li><a href="#" class="hover:text-blue-200 transition-colors duration-200">Mission</a></li>
-                        <li><a href="#" class="hover:text-blue-200 transition-colors duration-200">Vision</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Us Section -->
-                <div class="md:col-span-1">
-                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
-                    <form class="space-y-3">
-                        <div>
-                            <input 
-                                type="email" 
-                                placeholder="Your email" 
-                                class="w-full px-3 py-2 bg-white bg-opacity-90 text-gray-800 rounded focus:outline-none focus:ring-2 focus:ring-blue-300 text-sm"
-                                required
-                            >
-                        </div>
-                        <div>
-                            <textarea 
-                                placeholder="Your message" 
-                                rows="4" 
-                                class="w-full px-3 py-2 bg-white bg-opacity-90 text-gray-800 rounded focus:outline-none focus:ring-2 focus:ring-blue-300 text-sm resize-none"
-                                required
-                            ></textarea>
-                        </div>
-                        <div>
-                            <button 
-                                type="submit" 
-                                class="bg-white text-marahuyo-blue px-4 py-2 rounded text-sm font-medium hover:bg-blue-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                            >
-                                Submit
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Bottom Border Line -->
-            <div class="border-t border-white border-opacity-20 mt-8 pt-6">
-                <div class="text-center text-sm opacity-75">
-                    <p>&copy; 2025 Marahuyo Hotel & Resort. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Simple form submission handler
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            const message = this.querySelector('textarea').value;
-            
-            if (email && message) {
-                alert('Thank you for your message! We will get back to you soon.');
-                this.reset();
-            } else {
-                alert('Please fill in all fields.');
-            }
-        });
-    </script>
-
+    @extends('pages.footer')
 
 
 </body>

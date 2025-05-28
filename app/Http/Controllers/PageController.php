@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Room; 
 
 class PageController extends Controller
 {
@@ -11,10 +12,11 @@ class PageController extends Controller
     {
         return view('pages.landing_page');
     }
+
     public function getAvailableRooms()
     {
         $rooms = Room::where('availability', true)->get();
         return response()->json($rooms);
     }
-    
+
 }

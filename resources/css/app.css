@@ -5,3 +5,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h1, .playfair {
+    font-family: 'Playfair Display SC', serif;
+}
+
+.ephesis {
+    font-family: 'Ephesis', cursive;
+}
+
+input[type="date"].custom-date {
+    color: black;
+    background: transparent;
+    background-color: white;
+    opacity: 0.5;
+}

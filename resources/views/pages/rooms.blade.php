@@ -191,3 +191,5 @@
  
 </body>
 </html>
+
+@extends('pages.footer')
