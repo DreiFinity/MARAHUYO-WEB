@@ -44,37 +44,42 @@
   </div>   
 
 
-  <!-- Date and Guest Filters -->
-  <div class="container mx-auto px-6 mt-6 space-y-4"> 
+    <!-- Date and Guest Filters -->
+  <form action="{{ route('booking1') }}" method="GET" class="container mx-auto px-6 mt-6 space-y-4" id="filterForm">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="flex items-center border px-4 py-2 rounded-md w-full bg-white">
-        <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-        </svg>
-        <span class="text-gray-700">Check-in: {{ $checkin ?? 'Select date' }}</span>
-      </div>
-      <div class="flex items-center border px-4 py-2 rounded-md w-full bg-white">
-        <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-        </svg>
-        <span class="text-gray-700">Check-out: {{ $checkout ?? 'Select date' }}</span>
-      </div>
-      <div class="flex items-center border px-4 py-2 rounded-md w-full bg-white">
-        <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20v-2a4 4 0 00-3-3.87M9 20v-2a4 4 0 013-3.87M7 8a4 4 0 118 0 4 4 0 01-8 0zm12 8a4 4 0 00-3-3.87"/>
-        </svg>
-        <span class="text-gray-700">Guests: {{ $guests }}</span>
-      </div>
+        <div class="flex items-center border px-4 py-2 rounded-md w-full bg-white">
+            <svg class="w-5 h-5 text-gray-400 mr-2" ...></svg>
+            <input type="date" name="checkin" value="{{ $checkin ?? '' }}" class="border-none focus:ring-0 w-full" required onchange="this.form.submit()">
+        </div>
+        <div class="flex items-center border px-4 py-2 rounded-md w-full bg-white">
+            <svg class="w-5 h-5 text-gray-400 mr-2" ...></svg>
+            <input type="date" name="checkout" value="{{ $checkout ?? '' }}" class="border-none focus:ring-0 w-full" required onchange="this.form.submit()">
+        </div>
+        <div class="flex items-center border px-4 py-2 rounded-md w-full bg-white">
+            <svg class="w-5 h-5 text-gray-400 mr-2" ...></svg>
+            <input type="number" name="guests" min="1" value="{{ $guests ?? 2 }}" class="border-none focus:ring-0 w-full" required onchange="this.form.submit()">
+        </div>
     </div>
+    <!-- No filter button needed -->
+  </form>
 
     <!-- Room Type & Booking Policy Filters -->
     <div class="flex flex-wrap gap-4">
       <!-- Room Type -->
-      <div class="flex flex-wrap items-center gap-2">
-        <label class="font-semibold whitespace-nowrap">Room Type:</label>
-        <button class="bg-gray-200 px-3 py-1 rounded-md">Classic</button>
-        <button class="bg-gray-200 px-3 py-1 rounded-md">Deluxe</button>
-        <button class="bg-gray-200 px-3 py-1 rounded-md">Premier</button>
+      <div class="ml-20 flex flex-wrap items-center gap-2">
+        <label for="room_type_id" class="font-semibold whitespace-nowrap">Room Type:</label>
+        <form action="{{ route('booking1') }}" method="GET" class="flex items-center gap-2">
+          <input type="hidden" name="checkin" value="{{ $checkin }}">
+          <input type="hidden" name="checkout" value="{{ $checkout }}">
+          <input type="hidden" name="guests" value="{{ $guests }}">
+          <select name="room_type_id" id="room_type_id" class="px-3 py-1 rounded-md border-gray-300">
+            <option value="">All</option>
+            <option value="1" {{ request('room_type_id') == 1 ? 'selected' : '' }}>Classic</option>
+            <option value="2" {{ request('room_type_id') == 2 ? 'selected' : '' }}>Deluxe</option>
+            <option value="3" {{ request('room_type_id') == 3 ? 'selected' : '' }}>Premier</option>
+          </select>
+          <button type="submit" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition">Filter</button>
+        </form>
       </div>
 
       <!-- Booking Policy -->

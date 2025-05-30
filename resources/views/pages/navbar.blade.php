@@ -4,7 +4,7 @@
       <!-- Logo -->
       <div class="flex-shrink-0 mr-6">
         <a href="#">
-          <img class="h-10 w-auto" src="images/logo-white.png" alt="Logo" />
+          <img class="h-10 w-auto" src="\images\logo-white.png" alt="Logo" />
         </a>
       </div>
 
@@ -13,7 +13,7 @@
         <a href="/" class="text-white hover:text-blue-600">Home</a>
         <a href="#" class="text-white hover:text-blue-600">About</a>
         <a href="/rooms" class="text-white hover:text-blue-600">Rooms</a>
-        <a href="#" class="text-white hover:text-blue-600">Services</a>
+        <a href="/dining" class="text-white hover:text-blue-600">Services</a>
         <a href="#" class="text-white hover:text-blue-600">Contact</a>
       </div>
 

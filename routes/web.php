@@ -14,4 +14,6 @@ Route::get('/rooms/available', [RoomController::class, 'available'])->name('room
 Route::get('/booking2', [BookingController::class, 'show'])->name('booking2');
 Route::post('/finalize-booking', [BookingController::class, 'finalize'])->name('finalizeBooking');
 
+Route::get('/booking1', [BookingController::class, 'showBooking1'])->name('booking1');
+
 Route::get('/booking3/{booking_id}', [BookingController::class, 'showConfirmation'])->name('booking3');

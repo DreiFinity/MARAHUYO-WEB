@@ -99,4 +99,26 @@ class BookingController extends Controller
             'room' => $room,
         ]);
     }
+
+   
+    
+    public function showBooking1(Request $request)
+    {
+        $room_type_id = $request->input('room_type_id');
+        $room_id = $request->input('room_id');
+        $checkin = $request->input('checkin');
+        $checkout = $request->input('checkout');
+        $guests = (int) $request->input('guests', 2);
+
+        // Filter by room id or room_type_id
+        if ($room_id) {
+            $rooms = \App\Models\Room::where('id', $room_id)->get();
+        } elseif ($room_type_id) {
+            $rooms = \App\Models\Room::where('room_type_id', $room_type_id)->get();
+        } else {
+            $rooms = \App\Models\Room::all();
+        }
+
+        return view('pages.booking1', compact('rooms', 'checkin', 'checkout', 'guests'));
+    }
 }

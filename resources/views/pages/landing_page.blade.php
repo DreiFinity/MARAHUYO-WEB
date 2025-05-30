@@ -98,9 +98,9 @@
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 flex flex-col space-y-2">
     <a href="#" class="text-gray-700 hover:text-blue-600">Home</a>
-    <a href="#" class="text-gray-700 hover:text-blue-600">About</a>
-    <a href="#" class="text-gray-700 hover:text-blue-600">Rooms</a>
-    <a href="#" class="text-gray-700 hover:text-blue-600">Services</a>
+    <a href="#about" class="text-gray-700 hover:text-blue-600">About</a>
+    <a href="/rooms" class="text-gray-700 hover:text-blue-600">Rooms</a>
+    <a href="/dining" class="text-gray-700 hover:text-blue-600">Services</a>
     <a href="#" class="text-gray-700 hover:text-blue-600">Contact</a>
   </div>
 
