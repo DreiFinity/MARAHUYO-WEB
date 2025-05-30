@@ -402,16 +402,11 @@ function updateGuestLabel() {
         <div class="hidden md:block  mt-28">
           <h2 class="text-3xl font-semibold dm-sans-bold">Make Waves  of <span><br>Memories Together</span> </h2>
           <p class="text-lg mt-4 mb-32">Experience the spellbinding embrace of our <span><br>cozy accommodations-your sanctuary by the <span><br>sea, where sunlit rooms and ocean whispers <span></span> <br>create a haven of tranquility.</span></span>  </p>
-          <button class="relative inline-block px-6 py-3 text-lg font-semibold text-gray-900 border-2 border-transparent rounded-full group">
-            <span class="absolute inset-0 w-full h-full  rounded-full group-hover:bg-opacity-100 transition-all duration-300 ease-in-out"></span>
-            <span class="relative z-10 group-hover:text-white">Book Now</span>
-          </button>
+          <a href="/rooms" class="relative inline-block ">
+            <button class="w-full bg-[#056594] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#004364] transition-colors duration-200">Book Now</button>
+          </a>
         </div>
-
       </div>
-
-        
-        
         
       </div>
     </div>
@@ -421,7 +416,6 @@ function updateGuestLabel() {
  
   <div class="flex flex-col md:flex-row gap-8 mb-20">
  
-    <!-- Room Title and image for Mobile -->
     <div class="md:hidden mb-4">
       <h2 class="text-2xl font-semibold">Deluxe</h2>
     </div>
@@ -467,9 +461,9 @@ function updateGuestLabel() {
 
 
 <!-- Testimonials Section -->
-    <div class="bg-white py-16">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-serif font-bold text-center text-gray-800 mb-12 tracking-wide">TESTIMONIALS</h2>
+    <div class="bg-white py-16 mt-20 mb-10">
+        <div class="container mx-auto px-10 pb-10">
+            <h2 class="text-5xl playfair font-bold text-center text-gray-800 mb-12 tracking-wide">TESTIMONIALS</h2>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- Testimonial 1 -->
@@ -522,7 +516,7 @@ function updateGuestLabel() {
     <!-- Membership Section -->
     <div class="container mx-auto px-4 py-16">
         <div class="text-center mb-12">
-            <h1 class="text-5xl font-serif font-bold text-gray-800 mb-4 tracking-wide">JOIN MARAHUYO CLUB</h1>
+            <h1 class="playfair text-5xl font-bold text-gray-800 mb-4 tracking-wide">JOIN MARAHUYO CLUB</h1>
             <p class="text-xl text-gray-600 mb-8">Unlock exclusive perks, save more, and travel smarter.</p>
             <p class="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
                 Whether you're a frequent business traveler or a luxury explorer, our tiered membership plans offer unbeatable benefits tailored to your lifestyle.

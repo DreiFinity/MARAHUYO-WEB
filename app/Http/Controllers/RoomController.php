@@ -16,19 +16,25 @@ class RoomController extends Controller
 
         $checkin = $request->input('checkin');
         $checkout = $request->input('checkout');
-        $rooms = (int) $request->input('rooms', 1);
-        $guests = (int) $request->input('guests', 1);
+        // $rooms = (int) $request->input('rooms', 1);
+        $guests = (int) $request->input('guests', 2);
     
         if (!$checkin || !$checkout) {
             Log::info('Missing dates');
             return back()->with('error', 'Please select both check-in and check-out dates.');
         }
 
+        // Fetch available rooms (this logic can be customized as needed)
+        $rooms = Room::where('is_available', true)->get();
+
+        // Pass the checkin, checkout, and rooms data to the view
+        return view('pages.booking1', compact('checkin', 'checkout', 'rooms', 'guests'));
+
         // Debug query parameters
         Log::info('Search parameters:', [
             'checkin' => $checkin,
             'checkout' => $checkout,
-            'rooms' => $rooms,
+            // 'rooms' => $rooms,
             'guests' => $guests
         ]);
 
@@ -38,7 +44,7 @@ class RoomController extends Controller
                 $query->whereBetween('date', [$checkin, $checkout])
                     ->where('is_available', false);
             })
-            ->take($rooms)
+            // ->take($rooms)
             ->get();
 
         // Debug found rooms
