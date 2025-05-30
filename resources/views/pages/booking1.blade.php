@@ -29,6 +29,20 @@
     </div>
   </div>   
 
+  
+     <!-- Progress Bar pero dili makita heeeeeeeeeeeeeeeeeeelp -->
+  <div class="max-w-5xl mx-auto my-12">
+    <div class="flex items-center justify-center space-x-2">
+      <div class="block w-3 h-3 rounded-full bg-yellow-500"></div>
+      <div class="h-1 w-1/5 bg-yellow-500 rounded-full"></div>
+      <div class="block w-3 h-3 rounded-full bg-yellow-500"></div>
+      <div class="h-1 w-1/5 bg-gray-400 rounded-full"></div>
+      <div class="block w-3 h-3 rounded-full bg-gray-400"></div>
+      <div class="h-1 w-1/5 bg-gray-400 rounded-full"></div>
+      <div class="block w-3 h-3 rounded-full bg-gray-400"></div>
+    </div>
+  </div>   
+
 
   <!-- Date and Guest Filters -->
   <div class="container mx-auto px-6 mt-6 space-y-4"> 

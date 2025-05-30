@@ -37,6 +37,19 @@
       <div class="block w-3 h-3 rounded-full bg-gray"></div>
     </div>
   </div>
+  
+  <!-- Progress Bar -->
+  <div class="max-w-5xl mx-auto my-12">
+    <div class="flex items-center justify-center space-x-2">
+      <div class="block w-3 h-3 rounded-full bg-yellow-500"></div>
+      <div class="h-1 w-1/5 bg-yellow-500 rounded-full"></div>
+      <div class="block w-3 h-3 rounded-full bg-yellow-500"></div>
+      <div class="h-1 w-1/5 bg-yellow-500 rounded-full"></div>
+      <div class="block w-3 h-3 rounded-full bg-yellow-500"></div>
+      <div class="h-1 w-1/5 bg-gray rounded-full"></div>
+      <div class="block w-3 h-3 rounded-full bg-gray"></div>
+    </div>
+  </div>
 
   <!-- Main Grid Layout -->
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6 pb-12">
@@ -62,43 +75,65 @@
         </div>
       </div>
 
-      <!-- Guest Information Form -->
-      <form action="{{ route('finalizeBooking') }}" method="POST" class="bg-white space-y-4 p-6 rounded-lg shadow">
-        @csrf
-        <input type="hidden" name="room_id" value="{{ $room->id }}">
-        <input type="hidden" name="checkin" value="{{ $checkin }}">
-        <input type="hidden" name="checkout" value="{{ $checkout }}">
-        <input type="hidden" name="total_cost" value="{{ $total_cost }}">
-        <input type="hidden" name="guests" value="{{ $guests }}">
+        <!-- Guest Information Form -->
+        <form action="{{ route('finalizeBooking') }}" method="POST" class="bg-white space-y-4 p-6 rounded-lg shadow">
+          @csrf
+          <input type="hidden" name="room_id" value="{{ $room->id }}">
+          <input type="hidden" name="checkin" value="{{ $checkin }}">
+          <input type="hidden" name="checkout" value="{{ $checkout }}">
+          <input type="hidden" name="total_cost" value="{{ $total_cost }}">
+          <input type="hidden" name="guests" value="{{ $guests }}">
 
-        <h2 class="text-lg font-semibold mb-4">Guest Information</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium">First Name*</label>
-            <input type="text" name="first_name" required class="w-full border px-3 py-2 rounded" />
+          <h2 class="text-lg font-semibold mb-4">Guest Information</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+          <label class="block text-sm font-medium">First Name*</label>
+          <input type="text" name="first_name" required class="w-full border border-gray-300 px-3 py-2 rounded" />
+            </div>
+            <div>
+          <label class="block text-sm font-medium">Last Name*</label>
+          <input type="text" name="last_name" required class="w-full border border-gray-300 px-3 py-2 rounded" />
+            </div>
+            <div class="md:col-span-2">
+          <label class="block text-sm font-medium">Email*</label>
+          <input type="email" name="email" required class="w-full border border-gray-300 px-3 py-2 rounded" />
+            </div>
+            <div class="md:col-span-2">
+          <label class="block text-sm font-medium">Country / Region*</label>
+          <select name="country" required class="w-full border border-gray-300 px-3 py-2 rounded">
+            <option value="">Select Country</option>
+            <option value="Philippines">Philippines</option>
+            <option value="United States">United States</option>
+            <option value="Canada">Canada</option>
+            <option value="Australia">Australia</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Japan">Japan</option>
+            <option value="China">China</option>
+            <option value="South Korea">South Korea</option>
+            <option value="India">India</option>
+            <option value="Germany">Germany</option>
+            <option value="France">France</option>
+            <option value="Italy">Italy</option>
+            <option value="Spain">Spain</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Thailand">Thailand</option>
+            <option value="Vietnam">Vietnam</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="United Arab Emirates">United Arab Emirates</option>
+          </select>
+            </div>
+            <div class="md:col-span-2 flex">
+          <input type="text" name="phone_code" placeholder="+63" class="w-24 border border-gray-300 rounded-l px-2 py-2 text-sm" />
+          <input type="text" name="phone_number" placeholder="Phone Number" required class="w-full border border-l-0 border-gray-300 rounded-r px-3 py-2 text-sm" />
+            </div>
           </div>
-          <div>
-            <label class="block text-sm font-medium">Last Name*</label>
-            <input type="text" name="last_name" required class="w-full border px-3 py-2 rounded" />
-          </div>
-          <div class="md:col-span-2">
-            <label class="block text-sm font-medium">Email*</label>
-            <input type="email" name="email" required class="w-full border px-3 py-2 rounded" />
-          </div>
-          <div class="md:col-span-2">
-            <label class="block text-sm font-medium">Country / Region*</label>
-            <input type="text" name="country" required class="w-full border px-3 py-2 rounded" />
-          </div>
-          <div class="md:col-span-2 flex">
-            <input type="text" name="phone_code" placeholder="+63" class="w-24 border rounded-l px-2 py-2 text-sm" />
-            <input type="text" name="phone_number" placeholder="Phone Number" required class="w-full border border-l-0 rounded-r px-3 py-2 text-sm" />
-          </div>
-        </div>
 
-        <button type="submit" class="w-full bg-navblue text-white font-bold py-3 rounded hover:bg-[#025178]">
-          BOOK NOW
-        </button>
-      </form>
+          <button type="submit" class="w-full bg-navblue text-white font-bold py-3 rounded hover:bg-[#025178]">
+            BOOK NOW
+          </button>
+        </form>
 
     </div>
 

@@ -89,4 +89,14 @@ class BookingController extends Controller
         // Redirect to confirmation page with booking details
         return redirect()->route('booking3', ['booking_id' => $booking->id]);
     }
+    public function showConfirmation($booking_id)
+    {
+        $booking = \App\Models\Booking::findOrFail($booking_id);
+        $room = \App\Models\Room::find($booking->room_id);
+
+        return view('pages.booking3', [
+            'booking' => $booking,
+            'room' => $room,
+        ]);
+    }
 }

@@ -21,12 +21,12 @@
       <div class="block w-3 h-3 rounded-full bg-yellow-500"></div>
       <div class="h-1 w-1/5 bg-yellow-500 rounded-full"></div>
       <div class="block w-3 h-3 rounded-full bg-yellow-500"></div>
-      <div class="h-1 w-1/5 bg-gray rounded-full"></div>
-      <div class="block w-3 h-3 rounded-full bg-gray"></div>
+      <div class="h-1 w-1/5 bg-yellow-500 rounded-full"></div>
+      <div class="block w-3 h-3 rounded-full bg-yellow-500y"></div>
     </div>
   </div>   
 
-       <!-- Progress Bar -->
+   <!-- Progress Bar -->
   <div class="max-w-5xl mx-auto my-12">
     <div class="flex items-center justify-center space-x-2">
       <div class="block w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -34,10 +34,10 @@
       <div class="block w-3 h-3 rounded-full bg-yellow-500"></div>
       <div class="h-1 w-1/5 bg-yellow-500 rounded-full"></div>
       <div class="block w-3 h-3 rounded-full bg-yellow-500"></div>
-      <div class="h-1 w-1/5 bg-gray rounded-full"></div>
-      <div class="block w-3 h-3 rounded-full bg-gray"></div>
+      <div class="h-1 w-1/5 bg-yellow-500 rounded-full"></div>
+      <div class="block w-3 h-3 rounded-full bg-yellow-500y"></div>
     </div>
-  </div> 
+  </div>   
 
 
         <div class="container mx-auto px-4 py-8">
@@ -47,7 +47,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
             <h1 class="text-3xl font-bold text-gray-800">Booking Confirmed!</h1>
-            <p class="text-gray-600 mt-2">Thank you for choosing Marahuyo Resort and Spa</p>
+            <p class="text-gray-600 mt-2">Thank you for choosing Marahuyo Hotel and Resort</p>
         </div>
 
         <div class="border-t border-b border-gray-200 py-4 mb-6">
