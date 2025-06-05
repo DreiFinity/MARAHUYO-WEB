@@ -17,3 +17,5 @@ Route::post('/finalize-booking', [BookingController::class, 'finalize'])->name('
 Route::get('/booking1', [BookingController::class, 'showBooking1'])->name('booking1');
 
 Route::get('/booking3/{booking_id}', [BookingController::class, 'showConfirmation'])->name('booking3');
+Route::get('/contacts',[NavController::class,'contact']);
+Route::post('/contacts', [App\Http\Controllers\NavController::class, 'contactPost'])->name('contacts.post');

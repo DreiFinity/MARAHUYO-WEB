@@ -21,4 +21,22 @@ class NavController extends Controller
     {
         return view('pages.dining_page');
     }
+
+    public function contact()
+    {
+        return view('pages.contact');
+    }
+
+   
+    public function contactPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
+        ]);
+        // You can process/store/send the message here
+        return back()->with('success', 'Your message has been sent!');
+    }
+
 }

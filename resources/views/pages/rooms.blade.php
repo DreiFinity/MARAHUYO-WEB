@@ -68,7 +68,7 @@
                             'checkin' => request('checkin'),
                             'checkout' => request('checkout'),
                             'guests' => request('guests', 2)
-                        ]) }}" class="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-[#90a8b7] transition-colors duration-300">
+                        ]) }}" class="px-8 py-3 bg-[#056594] text-white font-medium rounded-lg hover:bg-[#90a8b7] transition-colors duration-300">
                             Book Now
                         </a>
                     </div>
@@ -129,7 +129,7 @@
                             'checkin' => request('checkin'),
                             'checkout' => request('checkout'),
                             'guests' => request('guests', 2)
-                        ]) }}" class="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-[#90a8b7] transition-colors duration-300">
+                        ]) }}" class="px-8 py-3 bg-[#056594] text-white font-medium rounded-lg hover:bg-[#90a8b7] transition-colors duration-300">
                             Book Now
                         </a>
                     </div>
@@ -184,7 +184,7 @@
                             'checkin' => request('checkin'),
                             'checkout' => request('checkout'),
                             'guests' => request('guests', 2)
-                        ]) }}" class="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-[#90a8b7] transition-colors duration-300">
+                        ]) }}" class="px-8 py-3 bg-[#056594] text-white font-medium rounded-lg hover:bg-[#90a8b7] transition-colors duration-300">
                             Book Now
                         </a>-
                     </div>
@@ -216,15 +216,15 @@
             </div>
         </div>
 
-        <div class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300">
-            <img src="images/cliffside.avif" alt="Alon Cliffside Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300">
+            <img src="images/rooms/suite-room401.jpg" alt="Alon Cliffside Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white opacity-0 group-hover:opacity-100 transition-all duration-300 p-8 flex flex-col justify-end">
-                <h3 class="text-2xl font-bold mb-3">Alon Cliffside Suite</h3>
+                <h3 class="text-2xl font-bold mb-3">Samal Bliss Suite</h3>
                 <p class="text-gray-200">
-                  Perched above the coastline, this secluded suite offers sweeping views, elegant interiors, <span><br>and a private lounge for sunset moments and starry nights.</span> 
+                Experience the charm of island living in the Boracay Bliss Suite. Inspired by the white sands and turquoise waters of the Philippines’ most iconic beach, this suite features native wood accents, woven rattan decor, and calming coastal tones. A perfect retreat for travelers seeking comfort, elegance, and a taste of tropical paradise.
                 </p>
             </div>
-        </div>
+        </div>  
 
         <div class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300">
             <img src="images/cliffside.avif" alt="Alon Cliffside Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -235,6 +235,8 @@
                 </p>
             </div>
         </div>
+
+
 
 
         <!-- Duplicate this card as needed -->

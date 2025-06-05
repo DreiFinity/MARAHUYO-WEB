@@ -64,7 +64,7 @@
   </form>
 
     <!-- Room Type & Booking Policy Filters -->
-    <div class="flex flex-wrap gap-4">
+    <div class="flex flex-wrap gap-4 mt-5">
       <!-- Room Type -->
       <div class="ml-20 flex flex-wrap items-center gap-2">
         <label for="room_type_id" class="font-semibold whitespace-nowrap">Room Type:</label>
@@ -110,10 +110,10 @@
 
 
   <!-- Room Listings -->
-  <div class="container mx-auto px-6 mt-6 space-y-8 mb-20">
+  <div class="container mx-auto px-6 mt-2 space-y-8 mb-20">
     <!-- Room Card -->
     @foreach($rooms as $room)
-    <div class="bg-white rounded-lg shadow p-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-6">
+    <div class="hover:shadow-lg hover:scale-105 transition duration-300 bg-white rounded-lg shadow p-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-6">
         @if($room->image_path)
             <img src="{{ asset($room->image_path) }}" alt="Room {{ $room->room_number }}" class="w-full md:w-1/3 rounded-lg object-cover" />
         @else
@@ -131,7 +131,7 @@
         {{-- <button class="bg-[#056594] text-white px-4 py-2 rounded-md self-start md:self-center">Book Now</button> --}}
         <button>
           <a href="{{ route('booking2', ['room_id' => $room->id, 'checkin' => $checkin, 'checkout' => $checkout]) }}"
-            class="bg-[#056594] text-white px-4 py-2 rounded-md self-start md:self-center hover:bg-[#034f73]">
+            class="bg-[#056594] text-white px-6 py-4 rounded-md self-start md:self-center hover:bg-[#034f73]">
             Book Now
           </a>
         </button>

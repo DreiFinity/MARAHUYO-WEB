@@ -47,7 +47,7 @@
 
 </head>
 <body class="bg-gray-100 ">
-  <nav class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+<nav class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-50">
     <div class="flex justify-start items-center h-16"> <!-- Changed justify-between to justify-start -->
       <!-- Logo -->
@@ -66,21 +66,7 @@
         <a href="#" class="text-gray-700 hover:text-blue-600">Contact</a>
       </div>
 
-            <!-- Search Box -->
-      <div class="relative ml-24">
-        <input 
-          type="text" 
-          placeholder="Search..."
-          class="pl-10 pr-4 py-1.5 bg-gray-100 border border-gray-300  text-sm text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400"
-        />
-        
-      </div>
-
-      <div class="flex-shrink-0 ml-2">
-        <a href="#">
-          <img class="h-10 w-auto" src="images/calendar-button.svg" alt="Logo" />
-        </a>
-      </div>
+          
 
 
       <!-- Mobile Menu Button -->
@@ -116,13 +102,12 @@
   </script>
 </nav>
 
-<section class="relative h-screen bg-cover bg-center" style="background-image: url('images/hero-image.jpg');">
+<section class="relative h-screen bg-cover bg-center md:mt-20" style="background-image: url('images/hero-image.jpg');">
   <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-
-  <div class="relative z-10 max-w-6xl mx-auto px-4 text-center text-white flex flex-col items-center justify-center h-full space-y-6">
+<div class="relative z-10 max-w-6xl mx-auto px-4 text-center text-white flex flex-col items-center justify-center h-full space-y-6">
     <!-- Headline -->
-    <h1 class="playfair text-5xl md:text-6xl font-bold  tracking-wider leading-tight">
-      BE ENCHANTED BY THE SEA
+    <h1 class="playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider leading-tight">
+        BE ENCHANTED BY THE SEA
     </h1>
 
     <!-- Subheadline -->
@@ -133,129 +118,58 @@
       Welcome to Marahuyo Hotel, your serene escape by the sea. Nestled along a pristine beachfront, Marahuyo—meaning "to enchant or bewitch"—is where nature’s beauty meets warm Filipino hospitality.
     </p>
 
-   
-<!-- Booking Bar -->
-{{-- <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6 text-gray-900 border border-white rounded-md bg-opacity-10 p-4 bg-gray-800 relative z-0">
 
-  <!-- Check in -->
-  <div class="relative flex flex-col items-start">
-    <input type="date" id="checkinDate" class="absolute bottom-full mb-2 border border-gray-300 rounded-md px-3 py-2 bg-white shadow-md hidden z-10" onchange="updateDateLabel('checkinDate', 'checkinLabel')">
-    <div class="flex flex-col mt-2 cursor-pointer" onclick="toggleDatePicker('checkinDate')">
-      <div class="flex items-center space-x-2">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-        </svg>
-        <span class="text-white font-semibold">Check in</span>
-      </div>
-      <span id="checkinLabel" class="text-sm text-white opacity-70 mt-1">Select date</span>
-    </div>
-  </div>
-
-  <!-- Check out -->
-  <div class="relative flex flex-col items-start">
-    <input type="date" id="checkoutDate" class="absolute bottom-full mb-2 border border-gray-300 rounded-md px-3 py-2 bg-white shadow-md hidden z-10" onchange="updateDateLabel('checkoutDate', 'checkoutLabel')">
-    <div class="flex flex-col mt-2 cursor-pointer" onclick="toggleDatePicker('checkoutDate')">
-      <div class="flex items-center space-x-2">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-        </svg>
-        <span class="text-white font-semibold">Check out</span>
-      </div>
-      <span id="checkoutLabel" class="text-sm text-white opacity-70 mt-1">Select date</span>
-    </div>
-  </div>
-
-  <!-- Rooms & Guests -->
-  <div class="relative md:col-span-2 mt-2">
-    <div onclick="toggleGuestModal()" class="flex flex-col cursor-pointer">
-      <div class="flex items-center space-x-2">
-        <span class="text-white font-semibold">Rooms & Guests</span>
-        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-        </svg>
-      </div>
-      <span id="guestLabel" class="text-sm text-white opacity-70 mt-1">1 Room, 2 Guests</span>
-    </div>
-
-    <!-- Modal -->
-    <div id="guestModal" class="absolute mt-2 p-4 bg-white rounded-md shadow-lg hidden z-20 text-sm w-60">
-      <div class="flex justify-between items-center mb-3">
-        <span class="font-medium text-gray-700">Rooms</span>
-        <div class="flex items-center space-x-2">
-          <button onclick="adjustCount('rooms', -1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">−</button>
-          <span id="roomsCount" class="w-6 text-center">1</span>
-          <button onclick="adjustCount('rooms', 1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
-        </div>
-      </div>
-      <div class="flex justify-between items-center">
-        <span class="font-medium text-gray-700">Guests</span>
-        <div class="flex items-center space-x-2">
-          <button onclick="adjustCount('guests', -1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">−</button>
-          <span id="guestsCount" class="w-6 text-center">2</span>
-          <button onclick="adjustCount('guests', 1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Button -->
-  <div class="flex justify-center md:justify-end mt-2">
-    <button class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition">
-      Check Rates
-    </button>
-  </div>
-</div> --}}
 
 <form action="{{ route('rooms.available') }}" method="GET" id="bookingForm">
-  <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6 text-gray-900 border border-white rounded-md bg-opacity-10 p-4 bg-gray-800 relative z-0">
+  <div class="grid grid-cols-1 md:grid-cols-5 gap-10 mt-6 text-gray-900 border border-white rounded-md bg-opacity-10 p-4 bg-gray-800 relative z-0">
 
     <!-- Check in -->
-    <div class="flex flex-col items-start">
+    <div class="flex flex-col items-start ">
       <label for="checkinDate" class="text-white font-semibold mb-1">Check in</label>
       <input type="date" id="checkinDate" name="checkin"
         class="custom-date border border-gray-300 rounded-md px-3 py-2 bg-white shadow-md text-gray-900 w-full" required />
     </div>
 
     <!-- Check out -->
-    <div class="flex flex-col items-start">
+    <div class="flex flex-col items-start  ">
       <label for="checkoutDate" class="text-white font-semibold mb-1">Check out</label>
       <input type="date" id="checkoutDate" name="checkout"
         class="custom-date border border-gray-300 rounded-md px-3 py-2 bg-white shadow-md text-gray-900 w-full" required />
     </div>
 
     <!-- Rooms & Guests -->
-    <div class="relative md:col-span-2 mt-2">
-      <div onclick="toggleGuestModal()" class="flex flex-col cursor-pointer">
-        <div class="flex items-center space-x-2">
-          <span class="text-white font-semibold">Rooms & Guests</span>
-          <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-          </svg>
-        </div>
-        <span id="guestLabel" class="text-sm text-white opacity-70 mt-1">
-          <span id="roomsCount">1</span> Room, <span id="guestsCount">2</span> Guests
+    <div class="  flex flex-col items-start md:col-span-2 mt-2">
+    <label class="text-white font-semibold mb-1">Rooms & Guests</label>
+    <div class="flex items-center gap-2 w-full">
+        <div onclick="toggleGuestModal()" class="flex items-center cursor-pointer gap-2">
+        <span id="guestLabel" class="text-sm text-white opacity-70">
+            <span id="roomsCount">1</span> Room, <span id="guestsCount">2</span> Guests
         </span>
-      </div>
+        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+        </svg>
+        </div>
+    </div>
 
-      <!-- Modal -->
-      <div id="guestModal" class="absolute mt-2 p-4 bg-white rounded-md shadow-lg hidden z-20 text-sm w-60">
+    <!-- Modal -->
+    <div id="guestModal" class="absolute mt-2 p-4 bg-white rounded-md shadow-lg hidden z-20 text-sm w-60">
         <div class="flex justify-between items-center mb-3">
-          <span class="font-medium text-gray-700">Rooms</span>
-          <div class="flex items-center space-x-2">
+        <span class="font-medium text-gray-700">Rooms</span>
+        <div class="flex items-center space-x-2">
             <button type="button" onclick="adjustCount('rooms', -1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">−</button>
             <span id="roomsCount" class="w-6 text-center">1</span>
             <button type="button" onclick="adjustCount('rooms', 1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
-          </div>
+        </div>
         </div>
         <div class="flex justify-between items-center">
-          <span class="font-medium text-gray-700">Guests</span>
-          <div class="flex items-center space-x-2">
+        <span class="font-medium text-gray-700">Guests</span>
+        <div class="flex items-center space-x-2">
             <button type="button" onclick="adjustCount('guests', -1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">−</button>
             <span id="guestsCount" class="w-6 text-center">2</span>
             <button type="button" onclick="adjustCount('guests', 1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
-          </div>
         </div>
-      </div>
+        </div>
+    </div>
     </div>
 
     <!-- Button -->
@@ -389,28 +303,33 @@ function updateGuestLabel() {
 </section>
 
 
-<section class="mt-32 mx-5 md:mx-20  gap-5">
+<section class="mt-32 mx-5 md:mx-20   gap-5">
  
-  <div class="dm-sans flex flex-col gap-12" id="room-sample">
-    <div class="flex flex-col md:flex-row gap-8 mb-20">
-      
-      <div class="md:w-1/2">
-        <img class="w-auto h-100 object-cover transition-all duration-300 transform shadow-md hover:shadow-lg hover:scale-110 rounded-lg" src="images/hero2.png" alt="Classic Room">
-      </div>
- 
-      <div class="ml-24 md:w-1/2 flex flex-col justify-between">
-        <div class="hidden md:block  mt-28">
-          <h2 class="text-3xl font-semibold dm-sans-bold">Make Waves  of <span><br>Memories Together</span> </h2>
-          <p class="text-lg mt-4 mb-32">Experience the spellbinding embrace of our <span><br>cozy accommodations-your sanctuary by the <span><br>sea, where sunlit rooms and ocean whispers <span></span> <br>create a haven of tranquility.</span></span>  </p>
-          <a href="/rooms" class="relative inline-block ">
-            <button class="w-full bg-[#056594] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#004364] transition-colors duration-200">Book Now</button>
-          </a>
+<div class="dm-sans flex flex-col gap-12" id="room-sample">
+    <div class=
+    "flex flex-col md:flex-row gap-8 mb-20">
+        <!-- Image -->
+        <div class="w-full md:w-1/2 flex justify-center md:justify-start mb-6 md:mb-0">
+            <img class="w-full max-w-xs md:max-w-full h-64 md:h-100 object-cover transition-all duration-300 transform shadow-md hover:shadow-lg hover:scale-110 rounded-lg" src="images/hero2.png" alt="Classic Room">
         </div>
-      </div>
-        
-      </div>
+        <!-- Text -->
+        <div class="w-full md:w-1/2 flex flex-col justify-between px-2 md:ml-24">
+            <div class="mt-4 md:mt-28">
+                <h2 class="text-2xl md:text-3xl font-semibold dm-sans-bold text-center md:text-left">
+                    Make Waves of <span><br class="hidden md:block">Memories Together</span>
+                </h2>
+                <p class="text-base md:text-lg mt-4 mb-8 md:mb-32 text-center md:text-left">
+                    Experience the spellbinding embrace of our <span><br class="hidden md:block">cozy accommodations-your sanctuary by the <span><br class="hidden md:block">sea, where sunlit rooms and ocean whispers <span></span> <br class="hidden md:block">create a haven of tranquility.</span></span>
+                </p>
+                <div class="flex justify-center md:justify-start">
+                    <a href="/rooms" class="relative inline-block w-full md:w-auto">
+                        <button class="w-full md:w-auto bg-[#056594] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#004364] transition-colors duration-200">Book Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
  
 <div class="dm-sans flex flex-col gap-12" id="about">
  
@@ -427,23 +346,22 @@ function updateGuestLabel() {
     <div class="md:w-1/2 flex flex-col justify-between">
  
 
- 
-      <!-- Description & Features -->
-      <div class="ml-32">
-        <div class="hidden md:block mb-4 mt-28">
-          <h2 class="text-4xl font-normal playfair">ABOUT US</h2>
-        </div>
-        
-        <div>
-          <p class="text-lg mb-32"> Marahuyo Hotel offers a serene retreat  <br />
-        with sun-kissed shores, gentle sea  <br />
-        breezes, and breathtaking sunsets, perfect <br />
-        for relaxation, adventure, or romantic <br />
-        getaways, blending comfort, charm, and  <br />
-        coastal elegance.<br /></p>
-          
-        </div>
-      </div>
+<!-- Description & Features -->
+<div class="ml-0 md:ml-32 w-full">
+    <div class="mb-4 mt-8 md:mt-28">
+        <h2 class="text-3xl md:text-4xl font-normal playfair text-center md:text-left">ABOUT US</h2>
+    </div>
+    <div>
+        <p class="text-base md:text-lg mb-8 md:mb-32 text-center md:text-left">
+            Marahuyo Hotel offers a serene retreat<br class="hidden md:block" />
+            with sun-kissed shores, gentle sea<br class="hidden md:block" />
+            breezes, and breathtaking sunsets, perfect<br class="hidden md:block" />
+            for relaxation, adventure, or romantic<br class="hidden md:block" />
+            getaways, blending comfort, charm, and<br class="hidden md:block" />
+            coastal elegance.
+        </p>
+    </div>
+</div>
  
       
     </div>
@@ -463,8 +381,9 @@ function updateGuestLabel() {
 <!-- Testimonials Section -->
     <div class="bg-white py-16 mt-20 mb-10">
         <div class="container mx-auto px-10 pb-10">
-            <h2 class="text-5xl playfair font-bold text-center text-gray-800 mb-12 tracking-wide">TESTIMONIALS</h2>
-            
+            <h2 class="text-3xl md:text-5xl playfair font-bold text-center text-gray-800 mb-8 md:mb-12 tracking-wide">
+                TESTIMONIALS
+            </h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- Testimonial 1 -->
                 <div class="bg-gray-100 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
@@ -535,7 +454,7 @@ function updateGuestLabel() {
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-gray-800">Silver Member</h3>
-                        <p class="text-lg text-gray-600">$10/month</p>
+                        <p class="text-lg text-gray-600">₱560/month</p>
                     </div>
                 </div>
                 <ul class="space-y-3 mb-8 text-gray-700">
@@ -564,7 +483,7 @@ function updateGuestLabel() {
                         <span>Priority customer support</span>
                     </li>
                 </ul>
-                <button onclick="openRegistrationModal('Silver', 10)" class="w-full bg-[#056594] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#004364] transition-colors duration-200">
+                <button onclick="openRegistrationModal('Silver', 560)" class="w-full bg-[#056594] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#004364] transition-colors duration-200">
                     Join
                 </button>
             </div>
@@ -582,7 +501,7 @@ function updateGuestLabel() {
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-gray-800">Gold Member</h3>
-                        <p class="text-lg text-gray-600">$25/month</p>
+                        <p class="text-lg text-gray-600">₱1,400/month</p>
                     </div>
                 </div>
                 <ul class="space-y-3 mb-8 text-gray-700">
@@ -608,7 +527,7 @@ function updateGuestLabel() {
                         <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                         </svg>
-                        <span>$25 dining credit per stay</span>
+                        <span>₱1,400 dining credit per stay</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -617,7 +536,7 @@ function updateGuestLabel() {
                         <span>Birthday or anniversary gift</span>
                     </li>
                 </ul>
-                <button onclick="openRegistrationModal('Gold', 25)" class="w-full bg-marahuyo-gold text-white py-3 px-6 rounded-lg font-semibold hover:bg-amber-600 transition-colors duration-200">
+                <button onclick="openRegistrationModal('Gold', 1400)" class="w-full bg-marahuyo-gold text-white py-3 px-6 rounded-lg font-semibold hover:bg-amber-600 transition-colors duration-200">
                     Join
                 </button>
             </div>
@@ -632,7 +551,7 @@ function updateGuestLabel() {
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-gray-800">Platinum Member</h3>
-                        <p class="text-lg text-gray-600">$60/month</p>
+                        <p class="text-lg text-gray-600">₱3,360/month</p>
                     </div>
                 </div>
                 <ul class="space-y-3 mb-8 text-gray-700">
@@ -679,7 +598,7 @@ function updateGuestLabel() {
                         <span>Digital key + mobile check-in access</span>
                     </li>
                 </ul>
-                <button onclick="openRegistrationModal('Platinum', 60)" class="w-full bg-[#056594] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#004364] transition-colors duration-200">
+                <button onclick="openRegistrationModal('Platinum', 3360)" class="w-full bg-[#056594] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#004364] transition-colors duration-200">
                     Join
                 </button>
             </div>
@@ -1033,6 +952,78 @@ function updateGuestLabel() {
         });
     </script>
     </div>
+
+    <!-- Modal Overlay -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <!-- Modal Content -->
+      <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+        
+        <!-- Close Button -->
+        <button id="closeLogin" class="absolute top-4 right-4 text-gray-500 hover:text-black text-xl font-bold">&times;</button>
+
+        <!-- Title -->
+        <h2 class="text-2xl font-bold text-center mb-6 pb-10 pt-3">
+          Login to <span class="text-navblue">Marahuyo</span>
+        </h2>
+
+        <!-- Form -->
+        <form class="space-y-4 px-4">
+          <input
+            type="email"
+            placeholder="Email"
+            class="w-full px-4 py-2 border border-gray-200 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-navblue focus:ring-opacity-50"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            class="w-full px-4 py-2 border border-gray-200 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-navblue focus:ring-opacity-50"
+          />
+
+          <div class="flex justify-between items-center text-sm text-gray-600 pb-8">
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" class="accent-navblue" />
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="text-navblue hover:underline">Forgot password?</a>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-navblue text-white py-2 rounded hover:bg-[#04547C] transition"
+          >
+            Login
+          </button>
+        </form>
+
+        <!-- Register Link -->
+        <p class="text-center text-sm text-gray-600 mt-4">
+          No account yet?
+          <a href="#" class="text-navblue font-medium hover:underline">Register Now</a>
+        </p>
+      </div>
+    </div>
+
+
+    <script>
+      const openModal = document.getElementById('openLogin');
+      const closeModal = document.getElementById('closeLogin');
+      const modal = document.getElementById('loginModal');
+  
+      openModal.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+      });
+  
+      closeModal.addEventListener('click', () => {
+        modal.classList.add('hidden');
+      });
+  
+      // Optional: close modal when clicking outside the modal content
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+        }
+      });
+    </script>
 
     
     @extends('pages.footer')

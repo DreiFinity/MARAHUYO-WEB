@@ -11,10 +11,10 @@
       <!-- Nav Links -->
       <div class="hidden md:flex space-x-20  ml-52"> <!-- Reduced space-x-6 to space-x-4 and added ml-4 to add a little margin -->
         <a href="/" class="text-white hover:text-blue-600">Home</a>
-        <a href="#" class="text-white hover:text-blue-600">About</a>
+        <a href="#about" class="text-white hover:text-blue-600">About</a>
         <a href="/rooms" class="text-white hover:text-blue-600">Rooms</a>
         <a href="/dining" class="text-white hover:text-blue-600">Services</a>
-        <a href="#" class="text-white hover:text-blue-600">Contact</a>
+        <a href="/contacts" class="text-white hover:text-blue-600">Contact</a>
       </div>
 
 
@@ -36,11 +36,11 @@
 
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 flex flex-col space-y-2">
-    <a href="#" class="text-gray-700 hover:text-blue-600">Home</a>
-    <a href="#" class="text-gray-700 hover:text-blue-600">About</a>
-    <a href="#" class="text-gray-700 hover:text-blue-600">Rooms</a>
-    <a href="#" class="text-gray-700 hover:text-blue-600">Services</a>
-    <a href="#" class="text-gray-700 hover:text-blue-600">Contact</a>
+    <a href="#" class="text-white hover:text-blue-600">Home</a>
+    <a href="#about" class="text-white hover:text-blue-600">About</a>
+    <a href="/rooms" class="text-white hover:text-blue-600">Rooms</a>
+    <a href="/dining" class="text-white hover:text-blue-600">Services</a>
+    <a href="/contacts" class="text-white hover:text-blue-600">Contact</a>
   </div>
 
 
