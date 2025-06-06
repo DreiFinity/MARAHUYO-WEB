@@ -121,4 +121,10 @@ class BookingController extends Controller
 
         return view('pages.booking1', compact('rooms', 'checkin', 'checkout', 'guests'));
     }
+    // In your controller
+    public function myBookings()
+    {
+        $bookings = auth()->user()->bookings()->with('room')->latest()->get();
+        return view('pages.mybooking', compact('bookings'));
+    }
 }

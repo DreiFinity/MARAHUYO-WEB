@@ -25,6 +25,8 @@
 </head>
 <body>
 
+  
+
   <!-- Progress Bar -->
   <div class="max-w-5xl mx-auto my-12">
     <div class="flex items-center justify-center space-x-2">
@@ -75,12 +77,13 @@
         </div>
       </div>
 
-        <!-- Guest Information Form -->
-        <form action="{{ route('finalizeBooking') }}" method="POST" class="bg-white space-y-4 p-6 rounded-lg shadow">
+            
+         <!-- Guest Information Form -->
+        <form action="{{ route('finalizeBooking') }}"  method="POST" class="bg-white space-y-4 p-6 rounded-lg shadow " onsubmit="return checkDatesSet();">
           @csrf
           <input type="hidden" name="room_id" value="{{ $room->id }}">
-          <input type="hidden" name="checkin" value="{{ $checkin }}">
-          <input type="hidden" name="checkout" value="{{ $checkout }}">
+          <input type="hidden" id="checkinField" name="checkin" value="{{ $checkin }}">
+          <input type="hidden" id="checkoutField" name="checkout" value="{{ $checkout }}">
           <input type="hidden" name="total_cost" value="{{ $total_cost }}">
           <input type="hidden" name="guests" value="{{ $guests }}">
 
@@ -211,20 +214,33 @@
     </div>
   </div>
 
+  
+
   <script>
+  // Breakdown overlay logic
     document.getElementById('VBbtn').addEventListener('click', function () {
       document.getElementById('breakdownOverlay').classList.remove('hidden');
     });
-
     document.getElementById('closeBreakdownBtn').addEventListener('click', function () {
       document.getElementById('breakdownOverlay').classList.add('hidden');
     });
-
     document.getElementById('breakdownOverlay').addEventListener('click', function (e) {
       if (e.target === this) {
         this.classList.add('hidden');
       }
     });
+
+    // Prevent booking if check-in or check-out is missing
+    function checkDatesSet() {
+      var checkin = document.getElementById('checkinField') ? document.getElementById('checkinField').value.trim() : '';
+      var checkout = document.getElementById('checkoutField') ? document.getElementById('checkoutField').value.trim() : '';
+      console.log('Checkin:', checkin, 'Checkout:', checkout); // Debug line
+      if (!checkin || !checkout || checkin === '' || checkout === '') {
+        alert('Please select your check-in and check-out dates before booking a room.');
+        return false;
+      }
+      return true;
+    }
   </script>
 </body>
 </html>

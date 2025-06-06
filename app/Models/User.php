@@ -16,11 +16,16 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var list<string>
+     * 
+     
      */
-    protected $fillable = [
+     protected $table = 'userlogin';
+
+     protected $fillable = [
         'name',
         'email',
         'password',
+        'profile_picture',
     ];
 
     /**
@@ -44,5 +49,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+   
+    public function bookings()
+    {
+        return $this->hasMany(\App\Models\Booking::class, 'user_id');
     }
 }

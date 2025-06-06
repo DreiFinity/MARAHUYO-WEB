@@ -1,9 +1,23 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NavController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\BookingController;
+
+
+
+Route::get('/dashboard', function () {
+    return view('pages.landing_page');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
 
 Route::get('/', [NavController::class, 'Landing']);
 Route::get('/', [NavController::class, 'Landing'])->name('home');
@@ -19,3 +33,4 @@ Route::get('/booking1', [BookingController::class, 'showBooking1'])->name('booki
 Route::get('/booking3/{booking_id}', [BookingController::class, 'showConfirmation'])->name('booking3');
 Route::get('/contacts',[NavController::class,'contact']);
 Route::post('/contacts', [App\Http\Controllers\NavController::class, 'contactPost'])->name('contacts.post');
+Route::get('/bookings', [BookingController::class, 'myBookings'])->middleware('auth')->name('bookings');
