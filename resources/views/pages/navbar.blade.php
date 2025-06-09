@@ -71,24 +71,24 @@
 
       <!-- Mobile Menu Button -->
       <div class="md:hidden">
-        <button id="menu-button" class="text-gray-700 focus:outline-none">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
+            <button id="menu-button" class="text-white focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+       </div>
     </div>
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 flex flex-col space-y-2">
-    <a href="#" class="text-white hover:text-blue-600">Home</a>
-    <a href="#about" class="text-white hover:text-blue-600">About</a>
-    <a href="/rooms" class="text-white hover:text-blue-600">Rooms</a>
-    <a href="/dining" class="text-white hover:text-blue-600">Services</a>
-    <a href="/contacts" class="text-white hover:text-blue-600">Contact</a>
-  </div>
+  <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 flex flex-col space-y-2 bg-white shadow-lg rounded-b-lg">
+    <a href="/" class="text-[#056594] font-semibold hover:text-blue-600">Home</a>
+    <a href="#about" class="text-[#056594] font-semibold hover:text-blue-600">About</a>
+    <a href="/rooms" class="text-[#056594] font-semibold hover:text-blue-600">Rooms</a>
+    <a href="/dining" class="text-[#056594] font-semibold hover:text-blue-600">Services</a>
+    <a href="/contacts" class="text-[#056594] font-semibold hover:text-blue-600">Contact</a>
+</div>
 
 
 

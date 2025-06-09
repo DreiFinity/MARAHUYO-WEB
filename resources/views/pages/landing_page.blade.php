@@ -373,7 +373,7 @@ function updateGuestLabel() {
 
 <section class="mt-32 mx-5 md:mx-20   gap-5">
  
-<div class="dm-sans flex flex-col gap-12" id="room-sample">
+<div class="dm-sans flex flex-col gap-12 " id="room-sample">
     <div class="flex flex-col md:flex-row gap-8 mb-20 items-center md:items-start">
         <!-- Image -->
         <div class="w-full md:w-1/2 flex justify-center md:justify-start mb-6 md:mb-0">

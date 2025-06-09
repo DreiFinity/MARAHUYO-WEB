@@ -10,7 +10,7 @@
 <body>
     <div class="container mx-auto px-6 py-16 max-w- mt-12">
     <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Contact Us</h1>
-    <div class="bg-white rounded-lg shadow p-8">
+    <div class="bg-white rounded-lg shadow p-8 mr-24  ml-24 ">
         @if(session('success'))
             <!-- Modal -->
             <div id="successModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
@@ -62,4 +62,3 @@
 </body>
 </html>
 
-@extends('pages.footer')

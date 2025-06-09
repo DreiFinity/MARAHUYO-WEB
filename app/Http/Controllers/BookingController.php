@@ -110,14 +110,16 @@ class BookingController extends Controller
         $checkout = $request->input('checkout');
         $guests = (int) $request->input('guests', 2);
 
-        // Filter by room id or room_type_id
+        // Only show available rooms
+        $query = \App\Models\Room::where('is_available', true);
+
         if ($room_id) {
-            $rooms = \App\Models\Room::where('id', $room_id)->get();
+            $query->where('id', $room_id);
         } elseif ($room_type_id) {
-            $rooms = \App\Models\Room::where('room_type_id', $room_type_id)->get();
-        } else {
-            $rooms = \App\Models\Room::all();
+            $query->where('room_type_id', $room_type_id);
         }
+
+        $rooms = $query->get();
 
         return view('pages.booking1', compact('rooms', 'checkin', 'checkout', 'guests'));
     }
