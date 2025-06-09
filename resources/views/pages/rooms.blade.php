@@ -318,19 +318,21 @@
     </div>
 </section>
 
+<!-- filepath: c:\MARAHUYO\marahuyo-jca-copy\resources\views\pages\rooms.blade.php -->
 <section class="my-16 px-6 lg:px-8">
     <h2 class="playfair text-3xl font-bold mb-8 text-center">Exclusive Suites</h2>
     <div id="scrollContainer" class="flex gap-8 overflow-x-auto flex-nowrap scroll-smooth scrollbar-hide cursor-grab pb-4">
-        <!-- Suite Cards -->
-        <div class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300">
+        <!-- Suite Card 1 -->
+        <a href="{{ route('booking1', ['room_type_id' => 4]) }}" class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300 block">
             <img src="images/hiraya.png" alt="Hiraya Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white opacity-0 group-hover:opacity-100 transition-all duration-300 p-8 flex flex-col justify-end">
                 <h3 class="text-2xl font-bold mb-3">Hiraya Veranda Suite</h3>
                 <p class="text-gray-200">Unwind in a serene garden-facing retreat with a spacious veranda and tranquil ambiance.</p>
             </div>
-        </div>
+        </a>
 
-        <div class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300">
+        <!-- Suite Card 2 -->
+        <a href="{{ route('booking1', ['room_type_id' => 4]) }}" class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300 block">
             <img src="images/liwayway.png" alt="Liwayway Beachfront Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white opacity-0 group-hover:opacity-100 transition-all duration-300 p-8 flex flex-col justify-end">
                 <h3 class="text-2xl font-bold mb-3">Liwayway Beachfront Suite</h3>
@@ -338,19 +340,21 @@
                  Enjoy direct beach access and panoramic ocean views from this spacious suite featuring contemporary <span><br>coastal design, premium amenities, and a private terrace for sunset relaxation.</span> 
                 </p>
             </div>
-        </div>
+        </a>
 
-                <div class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300">
-            <img src="images/rooms/suite-room401.jpg" alt="Alon Cliffside Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <!-- Suite Card 3 -->
+        <a href="{{ route('booking1', ['room_type_id' => 4]) }}" class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300 block">
+            <img src="images/rooms/suite-room401.jpg" alt="Samal Bliss Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white opacity-0 group-hover:opacity-100 transition-all duration-300 p-8 flex flex-col justify-end">
                 <h3 class="text-2xl font-bold mb-3">Samal Bliss Suite</h3>
                 <p class="text-gray-200">
                 Experience the charm of island living in the Boracay Bliss Suite. Inspired by the white sands and turquoise waters of the Philippines’ most iconic beach, this suite features native wood accents, woven rattan decor, and calming coastal tones. A perfect retreat for travelers seeking comfort, elegance, and a taste of tropical paradise.
                 </p>
             </div>
-        </div>  
+        </a>
 
-        <div class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300">
+        <!-- Suite Card 4 -->
+        <a href="{{ route('booking1', ['room_type_id' => 4]) }}" class="relative group bg-white rounded-xl overflow-hidden w-[380px] h-[480px] flex-shrink-0 shadow-sm hover:shadow-md transition-all duration-300 block">
             <img src="images/cliffside.avif" alt="Alon Cliffside Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white opacity-0 group-hover:opacity-100 transition-all duration-300 p-8 flex flex-col justify-end">
                 <h3 class="text-2xl font-bold mb-3">Alon Cliffside Suite</h3>
@@ -358,13 +362,7 @@
                   Perched above the coastline, this secluded suite offers sweeping views, elegant interiors, <span><br>and a private lounge for sunset moments and starry nights.</span> 
                 </p>
             </div>
-        </div>
-
-
-
-
-        <!-- Duplicate this card as needed -->
-        
+        </a>
     </div>
 </section>
 

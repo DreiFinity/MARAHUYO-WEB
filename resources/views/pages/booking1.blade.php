@@ -81,6 +81,7 @@
             <option value="1" {{ request('room_type_id') == 1 ? 'selected' : '' }}>Classic</option>
             <option value="2" {{ request('room_type_id') == 2 ? 'selected' : '' }}>Deluxe</option>
             <option value="3" {{ request('room_type_id') == 3 ? 'selected' : '' }}>Premier</option>
+            <option value="4" {{ request('room_type_id') == 4 ? 'selected' : '' }}>Suites</option>
           </select>
           <button type="submit" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition">Filter</button>
         </form>
