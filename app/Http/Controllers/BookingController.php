@@ -77,7 +77,7 @@ class BookingController extends Controller
             'guests' => 'required|integer|min:1',
             'total_cost' => 'required|numeric|min:0'
         ]);
-    
+        $validated['user_id'] = auth()->id();
         // Create the booking
         $booking = Booking::create($validated);
     

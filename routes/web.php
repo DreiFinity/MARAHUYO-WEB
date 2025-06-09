@@ -34,3 +34,7 @@ Route::get('/booking3/{booking_id}', [BookingController::class, 'showConfirmatio
 Route::get('/contacts',[NavController::class,'contact']);
 Route::post('/contacts', [App\Http\Controllers\NavController::class, 'contactPost'])->name('contacts.post');
 Route::get('/bookings', [BookingController::class, 'myBookings'])->middleware('auth')->name('bookings');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    // ...other profile routes...
+});

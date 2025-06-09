@@ -1,8 +1,14 @@
-{{-- filepath: resources/views/pages/contact.blade.php --}}
-@extends('layouts.app')
-
-@section('content')
-<div class="container mx-auto px-6 py-16 max-w-3xl">
+@extends('pages.navbar')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="container mx-auto px-6 py-16 max-w- mt-12">
     <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Contact Us</h1>
     <div class="bg-white rounded-lg shadow p-8">
         @if(session('success'))
@@ -51,5 +57,9 @@
             <p><span class="font-semibold">Email:</span> info@marahuyo.com</p>
         </div>
     </div>
-</div>
-@endsection
+
+  
+</body>
+</html>
+
+@extends('pages.footer')

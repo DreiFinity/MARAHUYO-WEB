@@ -26,6 +26,7 @@ class NavController extends Controller
     {
         return view('pages.contact');
     }
+    
 
    
     public function contactPost(Request $request)

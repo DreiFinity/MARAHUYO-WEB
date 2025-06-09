@@ -1,4 +1,4 @@
-{{-- filepath: c:\MARAHUYO\marahuyo-jca-copy\resources\views\pages\mybookings.blade.php --}}
+
 @extends('pages.navbar')
 
 @php
@@ -15,8 +15,10 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
+
+
 <div class="max-w-5xl mx-auto my-12">
-    <h1 class="text-3xl font-bold mb-8">My Bookings</h1>
+    <h1 class="text-3xl font-bold mb-8 mt-20">My Bookings</h1>
 
     @if(session('success'))
         <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">{{ session('success') }}</div>
@@ -55,8 +57,8 @@
                             {{ $booking->guests }}
                         </div>
                         <div class="mb-2">
-                            <span class="font-semibold">Total Price:</span>
-                            ₱{{ number_format($booking->total_price, 2) }}
+                            <span class="font-semibold">Total Cost:</span>
+                            ₱{{ number_format($booking->total_cost, 2) }}
                         </div>
                         <div class="mb-2">
                             <span class="font-semibold">Status:</span>
