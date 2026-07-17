@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,9 +24,10 @@
     }
   </script>
 </head>
+
 <body>
 
-  
+
 
   <!-- Progress Bar -->
   <div class="max-w-5xl mx-auto my-12">
@@ -39,7 +41,7 @@
       <div class="block w-3 h-3 rounded-full bg-gray"></div>
     </div>
   </div>
-  
+
   <!-- Progress Bar -->
   <div class="max-w-5xl mx-auto my-12">
     <div class="flex items-center justify-center space-x-2">
@@ -63,7 +65,8 @@
       <div class="bg-[#EBEBEB] shadow p-6 rounded-lg">
         <h2 class="text-lg font-semibold mb-4">Stay Summary</h2>
         <div class="grid grid-cols-3 gap-4">
-          <img src="{{ asset($room->image_path) }}" class="h-48 w-full object-cover rounded-lg" alt="Room {{ $room->room_number }}">
+          <img src="{{ asset($room->image_path) }}" class="h-48 w-full object-cover rounded-lg"
+            alt="Room {{ $room->room_number }}">
           <div class="col-span-2 space-y-2">
             <h3 class="text-xl font-bold">Room {{ $room->room_number }}</h3>
             <p class="text-gray-600">{{ $room->description }}</p>
@@ -77,66 +80,69 @@
         </div>
       </div>
 
-            
-         <!-- Guest Information Form -->
-        <form action="{{ route('finalizeBooking') }}"  method="POST" class="bg-white space-y-4 p-6 rounded-lg shadow " onsubmit="return checkDatesSet();">
-          @csrf
-          <input type="hidden" name="room_id" value="{{ $room->id }}">
-          <input type="hidden" id="checkinField" name="checkin" value="{{ $checkin }}">
-          <input type="hidden" id="checkoutField" name="checkout" value="{{ $checkout }}">
-          <input type="hidden" name="total_cost" value="{{ $total_cost }}">
-          <input type="hidden" name="guests" value="{{ $guests }}">
 
-          <h2 class="text-lg font-semibold mb-4">Guest Information</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-          <label class="block text-sm font-medium">First Name*</label>
-          <input type="text" name="first_name" required class="w-full border border-gray-300 px-3 py-2 rounded" />
-            </div>
-            <div>
-          <label class="block text-sm font-medium">Last Name*</label>
-          <input type="text" name="last_name" required class="w-full border border-gray-300 px-3 py-2 rounded" />
-            </div>
-            <div class="md:col-span-2">
-          <label class="block text-sm font-medium">Email*</label>
-          <input type="email" name="email" required class="w-full border border-gray-300 px-3 py-2 rounded" />
-            </div>
-            <div class="md:col-span-2">
-          <label class="block text-sm font-medium">Country / Region*</label>
-          <select name="country" required class="w-full border border-gray-300 px-3 py-2 rounded">
-            <option value="">Select Country</option>
-            <option value="Philippines">Philippines</option>
-            <option value="United States">United States</option>
-            <option value="Canada">Canada</option>
-            <option value="Australia">Australia</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="Singapore">Singapore</option>
-            <option value="Japan">Japan</option>
-            <option value="China">China</option>
-            <option value="South Korea">South Korea</option>
-            <option value="India">India</option>
-            <option value="Germany">Germany</option>
-            <option value="France">France</option>
-            <option value="Italy">Italy</option>
-            <option value="Spain">Spain</option>
-            <option value="Malaysia">Malaysia</option>
-            <option value="Thailand">Thailand</option>
-            <option value="Vietnam">Vietnam</option>
-            <option value="Indonesia">Indonesia</option>
-            <option value="Saudi Arabia">Saudi Arabia</option>
-            <option value="United Arab Emirates">United Arab Emirates</option>
-          </select>
-            </div>
-            <div class="md:col-span-2 flex">
-          <input type="text" name="phone_code" placeholder="+63" class="w-24 border border-gray-300 rounded-l px-2 py-2 text-sm" />
-          <input type="text" name="phone_number" placeholder="Phone Number" required class="w-full border border-l-0 border-gray-300 rounded-r px-3 py-2 text-sm" />
-            </div>
+      <!-- Guest Information Form -->
+      <form action="{{ route('finalizeBooking') }}" method="POST" class="bg-white space-y-4 p-6 rounded-lg shadow "
+        onsubmit="return checkDatesSet();">
+        @csrf
+        <input type="hidden" name="room_id" value="{{ $room->id }}">
+        <input type="hidden" id="checkinField" name="checkin" value="{{ $checkin }}">
+        <input type="hidden" id="checkoutField" name="checkout" value="{{ $checkout }}">
+        <input type="hidden" name="total_cost" value="{{ $total_cost }}">
+        <input type="hidden" name="guests" value="{{ $guests }}">
+
+        <h2 class="text-lg font-semibold mb-4">Guest Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">First Name*</label>
+            <input type="text" name="first_name" required class="w-full border border-gray-300 px-3 py-2 rounded" />
           </div>
+          <div>
+            <label class="block text-sm font-medium">Last Name*</label>
+            <input type="text" name="last_name" required class="w-full border border-gray-300 px-3 py-2 rounded" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium">Email*</label>
+            <input type="email" name="email" required class="w-full border border-gray-300 px-3 py-2 rounded" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium">Country / Region*</label>
+            <select name="country" required class="w-full border border-gray-300 px-3 py-2 rounded">
+              <option value="">Select Country</option>
+              <option value="Philippines">Philippines</option>
+              <option value="United States">United States</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Japan">Japan</option>
+              <option value="China">China</option>
+              <option value="South Korea">South Korea</option>
+              <option value="India">India</option>
+              <option value="Germany">Germany</option>
+              <option value="France">France</option>
+              <option value="Italy">Italy</option>
+              <option value="Spain">Spain</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Vietnam">Vietnam</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="United Arab Emirates">United Arab Emirates</option>
+            </select>
+          </div>
+          <div class="md:col-span-2 flex">
+            <input type="text" name="phone_code" placeholder="+63"
+              class="w-24 border border-gray-300 rounded-l px-2 py-2 text-sm" />
+            <input type="text" name="phone_number" placeholder="Phone Number" required
+              class="w-full border border-l-0 border-gray-300 rounded-r px-3 py-2 text-sm" />
+          </div>
+        </div>
 
-          <button type="submit" class="w-full bg-navblue text-white font-bold py-3 rounded hover:bg-[#025178]">
-            BOOK NOW
-          </button>
-        </form>
+        <button type="submit" class="w-full bg-navblue text-white font-bold py-3 rounded hover:bg-[#025178]">
+          BOOK NOW
+        </button>
+      </form>
 
     </div>
 
@@ -214,19 +220,33 @@
     </div>
   </div>
 
-  
+
 
   <script>
-  // Breakdown overlay logic
-    document.getElementById('VBbtn').addEventListener('click', function () {
-      document.getElementById('breakdownOverlay').classList.remove('hidden');
-    });
-    document.getElementById('closeBreakdownBtn').addEventListener('click', function () {
-      document.getElementById('breakdownOverlay').classList.add('hidden');
-    });
-    document.getElementById('breakdownOverlay').addEventListener('click', function (e) {
-      if (e.target === this) {
-        this.classList.add('hidden');
+    // Breakdown overlay logic
+    document.addEventListener('DOMContentLoaded', function () {
+      const vbBtn = document.getElementById('VBbtn');
+      const closeBtn = document.getElementById('closeBreakdownBtn');
+      const overlay = document.getElementById('breakdownOverlay');
+
+      if (vbBtn && overlay) {
+        vbBtn.addEventListener('click', function () {
+          overlay.classList.remove('hidden');
+        });
+      }
+
+      if (closeBtn && overlay) {
+        closeBtn.addEventListener('click', function () {
+          overlay.classList.add('hidden');
+        });
+      }
+
+      if (overlay) {
+        overlay.addEventListener('click', function (e) {
+          if (e.target === this) {
+            this.classList.add('hidden');
+          }
+        });
       }
     });
 
@@ -243,5 +263,6 @@
     }
   </script>
 </body>
+
 </html>
 @extends('pages.footer')

@@ -96,9 +96,11 @@
     const button = document.getElementById('menu-button');
     const menu = document.getElementById('mobile-menu');
 
-    button.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
+    if (button && menu) {
+      button.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
   </script>
 </nav>
 
@@ -243,22 +245,30 @@
 
 
     <script>
-      const openModal = document.getElementById('openLogin');
-      const closeModal = document.getElementById('closeLogin');
-      const modal = document.getElementById('loginModal');
-  
-      openModal.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-      });
-  
-      closeModal.addEventListener('click', () => {
-        modal.classList.add('hidden');
-      });
-  
-      // Optional: close modal when clicking outside the modal content
-      window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.add('hidden');
+      document.addEventListener('DOMContentLoaded', function () {
+        const openModal = document.getElementById('openLogin');
+        const closeModal = document.getElementById('closeLogin');
+        const modal = document.getElementById('loginModal');
+    
+        if (openModal && modal) {
+          openModal.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+          });
+        }
+    
+        if (closeModal && modal) {
+          closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden');
+          });
+        }
+    
+        // Optional: close modal when clicking outside the modal content
+        if (modal) {
+          window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+              modal.classList.add('hidden');
+            }
+          });
         }
       });
     </script>

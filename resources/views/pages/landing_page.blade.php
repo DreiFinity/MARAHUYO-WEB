@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MARAHUYO</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="resouces/css/fonts.css" rel="stylesheet">
+  <!-- Removed missing fonts.css link -->
   <!-- Google Fonts: Playfair Display SC -->
   <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet">
 
@@ -598,7 +598,7 @@ function updateGuestLabel() {
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7-293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                         </svg>
                         <span>Birthday or anniversary gift</span>
                     </li>
@@ -1160,22 +1160,30 @@ function updateGuestLabel() {
 
 
     <script>
-      const openModal = document.getElementById('openLogin');
-      const closeModal = document.getElementById('closeLogin');
-      const modal = document.getElementById('loginModal');
-  
-      openModal.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-      });
-  
-      closeModal.addEventListener('click', () => {
-        modal.classList.add('hidden');
-      });
-  
-      // Optional: close modal when clicking outside the modal content
-      window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.add('hidden');
+      document.addEventListener('DOMContentLoaded', function () {
+        const openModal = document.getElementById('openLogin');
+        const closeModal = document.getElementById('closeLogin');
+        const modal = document.getElementById('loginModal');
+    
+        if (openModal && modal) {
+          openModal.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+          });
+        }
+    
+        if (closeModal && modal) {
+          closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden');
+          });
+        }
+    
+        // Optional: close modal when clicking outside the modal content
+        if (modal) {
+          window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+              modal.classList.add('hidden');
+            }
+          });
         }
       });
     </script>

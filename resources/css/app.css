@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap');
-@import "tailwindcss/preflight";
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
-
 
 h1, .playfair {
     font-family: 'Playfair Display SC', serif;

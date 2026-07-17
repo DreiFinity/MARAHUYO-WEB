@@ -367,34 +367,38 @@
 </section>
 
 <script>
-  const scrollContainer = document.getElementById('scrollContainer');
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollContainer = document.getElementById('scrollContainer');
+    if (scrollContainer) {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
 
-  scrollContainer.addEventListener('mousedown', (e) => {
-    isDown = true;
-    scrollContainer.classList.add('scrolling');
-    startX = e.pageX - scrollContainer.offsetLeft;
-    scrollLeft = scrollContainer.scrollLeft;
-  });
+      scrollContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        scrollContainer.classList.add('scrolling');
+        startX = e.pageX - scrollContainer.offsetLeft;
+        scrollLeft = scrollContainer.scrollLeft;
+      });
 
-  scrollContainer.addEventListener('mouseleave', () => {
-    isDown = false;
-    scrollContainer.classList.remove('scrolling');
-  });
+      scrollContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+        scrollContainer.classList.remove('scrolling');
+      });
 
-  scrollContainer.addEventListener('mouseup', () => {
-    isDown = false;
-    scrollContainer.classList.remove('scrolling');
-  });
+      scrollContainer.addEventListener('mouseup', () => {
+        isDown = false;
+        scrollContainer.classList.remove('scrolling');
+      });
 
-  scrollContainer.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - scrollContainer.offsetLeft;
-    const walk = (x - startX) * 2; // scroll speed
-    scrollContainer.scrollLeft = scrollLeft - walk;
+      scrollContainer.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - scrollContainer.offsetLeft;
+        const walk = (x - startX) * 2; // scroll speed
+        scrollContainer.scrollLeft = scrollLeft - walk;
+      });
+    }
   });
 </script>
 
