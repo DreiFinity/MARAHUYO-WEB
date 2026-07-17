@@ -19,14 +19,16 @@ class User extends Authenticatable
      * 
      
      */
-     protected $table = 'userlogin';
-
      protected $fillable = [
-        'name',
         'email',
         'password',
-        'profile_picture',
+        'is_active_member',
     ];
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

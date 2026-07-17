@@ -28,6 +28,16 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Create a custom token in userlogin table for this session
+        $token = \Illuminate\Support\Str::random(60);
+        \Illuminate\Support\Facades\DB::table('userlogin')->insert([
+            'user_id' => Auth::id(),
+            'token' => $token,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        $request->session()->put('userlogin_token', $token);
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
@@ -36,6 +46,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // Remove token from userlogin table
+        if ($token = $request->session()->get('userlogin_token')) {
+            \Illuminate\Support\Facades\DB::table('userlogin')->where('token', $token)->delete();
+        }
+        if (Auth::check()) {
+            \Illuminate\Support\Facades\DB::table('userlogin')->where('user_id', Auth::id())->delete();
+        }
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

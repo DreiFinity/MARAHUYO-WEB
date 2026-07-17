@@ -23,6 +23,12 @@
       },
     }
   </script>
+  <style>
+      input[type="date"].custom-date {
+          color: black;
+          background-color: white;
+      }
+  </style>
 </head>
 
 <body>
@@ -72,9 +78,9 @@
             <p class="text-gray-600">{{ $room->description }}</p>
             <div class="space-y-1 mt-4">
               <p class="text-md">₱{{ number_format($room->price_per_night, 2) }}/night</p>
-              <p class="text-md">Check-in: {{ date('F j, Y', strtotime($checkin)) }}</p>
-              <p class="text-md">Check-out: {{ date('F j, Y', strtotime($checkout)) }}</p>
-              <p class="text-md">Nights: {{ $nights }}</p>
+              <p class="text-md" id="summaryCheckin">Check-in: {{ date('F j, Y', strtotime($checkin)) }}</p>
+              <p class="text-md" id="summaryCheckout">Check-out: {{ date('F j, Y', strtotime($checkout)) }}</p>
+              <p class="text-md" id="summaryNights">Nights: {{ $nights }}</p>
             </div>
           </div>
         </div>
@@ -86,56 +92,16 @@
         onsubmit="return checkDatesSet();">
         @csrf
         <input type="hidden" name="room_id" value="{{ $room->id }}">
-        <input type="hidden" id="checkinField" name="checkin" value="{{ $checkin }}">
-        <input type="hidden" id="checkoutField" name="checkout" value="{{ $checkout }}">
-        <input type="hidden" name="total_cost" value="{{ $total_cost }}">
+        <input type="hidden" name="total_cost" id="inputTotalCost" value="{{ $total_cost }}">
         <input type="hidden" name="guests" value="{{ $guests }}">
-
-        <h2 class="text-lg font-semibold mb-4">Guest Information</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label class="block text-sm font-medium">First Name*</label>
-            <input type="text" name="first_name" required class="w-full border border-gray-300 px-3 py-2 rounded" />
+            <label class="block text-sm font-medium text-gray-700">Check-in Date</label>
+            <input type="date" id="checkinField" name="checkin" value="{{ $checkin }}" onchange="recalculateCharges()" class="custom-date w-full border border-gray-300 px-3 py-2 rounded bg-white" />
           </div>
           <div>
-            <label class="block text-sm font-medium">Last Name*</label>
-            <input type="text" name="last_name" required class="w-full border border-gray-300 px-3 py-2 rounded" />
-          </div>
-          <div class="md:col-span-2">
-            <label class="block text-sm font-medium">Email*</label>
-            <input type="email" name="email" required class="w-full border border-gray-300 px-3 py-2 rounded" />
-          </div>
-          <div class="md:col-span-2">
-            <label class="block text-sm font-medium">Country / Region*</label>
-            <select name="country" required class="w-full border border-gray-300 px-3 py-2 rounded">
-              <option value="">Select Country</option>
-              <option value="Philippines">Philippines</option>
-              <option value="United States">United States</option>
-              <option value="Canada">Canada</option>
-              <option value="Australia">Australia</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="Singapore">Singapore</option>
-              <option value="Japan">Japan</option>
-              <option value="China">China</option>
-              <option value="South Korea">South Korea</option>
-              <option value="India">India</option>
-              <option value="Germany">Germany</option>
-              <option value="France">France</option>
-              <option value="Italy">Italy</option>
-              <option value="Spain">Spain</option>
-              <option value="Malaysia">Malaysia</option>
-              <option value="Thailand">Thailand</option>
-              <option value="Vietnam">Vietnam</option>
-              <option value="Indonesia">Indonesia</option>
-              <option value="Saudi Arabia">Saudi Arabia</option>
-              <option value="United Arab Emirates">United Arab Emirates</option>
-            </select>
-          </div>
-          <div class="md:col-span-2 flex">
-            <input type="text" name="phone_code" placeholder="+63"
-              class="w-24 border border-gray-300 rounded-l px-2 py-2 text-sm" />
-            <input type="text" name="phone_number" placeholder="Phone Number" required
-              class="w-full border border-l-0 border-gray-300 rounded-r px-3 py-2 text-sm" />
+            <label class="block text-sm font-medium text-gray-700">Check-out Date</label>
+            <input type="date" id="checkoutField" name="checkout" value="{{ $checkout }}" onchange="recalculateCharges()" class="custom-date w-full border border-gray-300 px-3 py-2 rounded bg-white" />
           </div>
         </div>
 
@@ -154,11 +120,11 @@
           <div class="bg-grayy px-4 py-4 rounded-md">
             <div class="flex justify-between my-1">
               <h2>Room Charges:</h2>
-              <h2>₱{{ number_format($room_charge, 2) }}</h2>
+              <h2 id="summaryRoomCharges">₱{{ number_format($room_charge, 2) }}</h2>
             </div>
             <div class="flex justify-between my-1">
               <h2>Service Charge and Tax:</h2>
-              <h2>₱{{ number_format($service_charge, 2) }}</h2>
+              <h2 id="summaryServiceCharges">₱{{ number_format($service_charge, 2) }}</h2>
             </div>
           </div>
         </div>
@@ -166,9 +132,9 @@
           <div class="bg-grayy px-4 py-5 rounded-md">
             <div class="flex justify-between">
               <h2 class="mt-1 mb-4 font-semibold">Total Charges to Pay</h2>
-              <h3 class="pt-5 font-bold text-lg">₱{{ number_format($total_cost, 2) }}</h3>
+              <h3 class="pt-5 font-bold text-lg" id="summaryTotalCharges">₱{{ number_format($total_cost, 2) }}</h3>
             </div>
-            <button id="VBbtn" class="text-navblue text-sm underline focus:outline-none">View Breakdown</button>
+            <button id="VBbtn" type="button" class="text-navblue text-sm underline focus:outline-none">View Breakdown</button>
           </div>
         </div>
         {{-- <button class="w-full bg-navblue text-white font-bold py-3 rounded shadow hover:bg-[#025178]">
@@ -187,13 +153,13 @@
       </div>
 
       <div class="flex justify-between items-center py-3 border-b border-gray-200">
-        <p class="text-md">Nights: {{ $nights }}</p>
+        <p class="text-md" id="breakdownNights">Nights: {{ $nights }}</p>
       </div>
 
       <div class="my-4">
         <div class="flex justify-between py-2">
           <span class="text-gray-600">Room Charges</span>
-          <span>₱{{ number_format($room_charge, 2) }}</span>
+          <span id="breakdownRoomCharges">₱{{ number_format($room_charge, 2) }}</span>
         </div>
         <div class="flex justify-between py-2">
           <span class="text-gray-600">Extra Charges</span>
@@ -201,14 +167,14 @@
         </div>
         <div class="flex justify-between py-2">
           <span class="text-gray-600">Service Charge and Tax</span>
-          <span>₱{{ number_format($service_charge, 2) }}</span>
+          <span id="breakdownServiceCharges">₱{{ number_format($service_charge, 2) }}</span>
         </div>
       </div>
 
       <div class="border-t border-gray-200 pt-4 mb-4">
         <div class="flex justify-between font-bold text-lg">
           <span>Total Charges</span>
-          <span>₱{{ number_format($total_cost, 2) }}</span>
+          <span id="breakdownTotalCharges">₱{{ number_format($total_cost, 2) }}</span>
         </div>
       </div>
 
@@ -260,6 +226,57 @@
         return false;
       }
       return true;
+    }
+
+    function recalculateCharges() {
+      const checkinStr = document.getElementById('checkinField').value;
+      const checkoutStr = document.getElementById('checkoutField').value;
+      
+      if (!checkinStr || !checkoutStr) return;
+
+      const checkin = new Date(checkinStr);
+      const checkout = new Date(checkoutStr);
+
+      if (checkout <= checkin) {
+          alert('Check-out date must be after Check-in date.');
+          document.getElementById('checkoutField').value = '';
+          return;
+      }
+
+      // Calculate nights
+      const diffTime = Math.abs(checkout - checkin);
+      const nights = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      
+      const pricePerNight = {{ $room->price_per_night }};
+      const roomCharges = pricePerNight * nights;
+      const serviceCharge = 500 * nights;
+      const totalCost = roomCharges + serviceCharge;
+
+      // Formatter for Philippine Peso
+      const formatter = new Intl.NumberFormat('en-PH', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+      });
+
+      // Update inputs
+      document.getElementById('inputTotalCost').value = totalCost;
+
+      // Update Stay Summary texts
+      const checkinOptions = { month: 'long', day: 'numeric', year: 'numeric' };
+      document.getElementById('summaryCheckin').innerText = 'Check-in: ' + checkin.toLocaleDateString('en-US', checkinOptions);
+      document.getElementById('summaryCheckout').innerText = 'Check-out: ' + checkout.toLocaleDateString('en-US', checkinOptions);
+      document.getElementById('summaryNights').innerText = 'Nights: ' + nights;
+
+      // Update Charge values
+      document.getElementById('summaryRoomCharges').innerText = '₱' + formatter.format(roomCharges);
+      document.getElementById('summaryServiceCharges').innerText = '₱' + formatter.format(serviceCharge);
+      document.getElementById('summaryTotalCharges').innerText = '₱' + formatter.format(totalCost);
+
+      // Update Breakdown values
+      document.getElementById('breakdownNights').innerText = 'Nights: ' + nights;
+      document.getElementById('breakdownRoomCharges').innerText = '₱' + formatter.format(roomCharges);
+      document.getElementById('breakdownServiceCharges').innerText = '₱' + formatter.format(serviceCharge);
+      document.getElementById('breakdownTotalCharges').innerText = '₱' + formatter.format(totalCost);
     }
   </script>
 </body>

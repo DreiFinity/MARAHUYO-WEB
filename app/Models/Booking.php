@@ -8,13 +8,8 @@ class Booking extends Model
 {
     protected $fillable = [
         'room_id',
-        'user_id', 
-        'first_name',
-        'last_name',
-        'email',
-        'country',
-        'phone_code',
-        'phone_number',
+        'user_id',
+        'customer_id',
         'checkin',
         'checkout',
         'guests',
@@ -25,5 +20,15 @@ class Booking extends Model
     public function room()
     {
         return $this->belongsTo(Room::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

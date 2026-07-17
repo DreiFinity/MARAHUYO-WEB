@@ -41,10 +41,10 @@
             @auth
                 <div class="relative" id="profileDropdownWrapper">
                     <button id="profileDropdownBtn" type="button" class="flex items-center focus:outline-none">
-                        <img src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('images/default-avatar.png') }}"
+                        <img src="{{ Auth::user()->customer?->profile_picture ? asset('storage/' . Auth::user()->customer->profile_picture) : asset('images/default-avatar.svg') }}"
                             alt="Profile"
                             class="w-10 h-10 rounded-full border-2 border-gray-300 object-cover" />
-                        <span class="ml-2 text-white font-semibold hidden md:inline">{{ Auth::user()->name }}</span>
+                        <span class="ml-2 text-white font-semibold hidden md:inline">{{ Auth::user()->customer?->first_name ?? 'User' }}</span>
                         <svg class="w-4 h-4 ml-1 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
@@ -206,9 +206,15 @@
 
             <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
-                <div class="mb-4">
-                    <label class="block text-gray-700 mb-1" for="signup-name">Name</label>
-                    <input id="signup-name" name="name" type="text" class="w-full border border-gray-300 rounded px-4 py-2" required>
+                <div class="mb-4 flex space-x-2">
+                    <div class="w-1/2">
+                        <label class="block text-gray-700 mb-1" for="signup-first-name">First Name</label>
+                        <input id="signup-first-name" name="first_name" type="text" class="w-full border border-gray-300 rounded px-4 py-2" required>
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-gray-700 mb-1" for="signup-last-name">Last Name</label>
+                        <input id="signup-last-name" name="last_name" type="text" class="w-full border border-gray-300 rounded px-4 py-2" required>
+                    </div>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 mb-1" for="signup-email">Email</label>

@@ -66,18 +66,13 @@ class BookingController extends Controller
         // Validate the request
         $validated = $request->validate([
             'room_id' => 'required|exists:rooms,id',
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'country' => 'required|string|max:255',
-            'phone_code' => 'required|string|max:5',
-            'phone_number' => 'required|string|max:20',
             'checkin' => 'required|date',
             'checkout' => 'required|date|after:checkin',
             'guests' => 'required|integer|min:1',
             'total_cost' => 'required|numeric|min:0'
         ]);
         $validated['user_id'] = auth()->id();
+        $validated['customer_id'] = auth()->user()->customer?->id;
         // Create the booking
         $booking = Booking::create($validated);
     

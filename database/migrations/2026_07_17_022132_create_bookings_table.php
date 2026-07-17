@@ -11,7 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        if (!Schema::hasTable('bookings')) {
+            Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('room_id')->constrained();
             $table->string('first_name');
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->string('status')->default('confirmed');
             $table->timestamps();
         });
+        }
     }
 
     /**

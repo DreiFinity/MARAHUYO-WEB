@@ -45,6 +45,10 @@
                         <h2 class="text-xl font-bold mb-2">Room {{ $booking->room->room_number ?? 'N/A' }}</h2>
                         <p class="text-gray-600 mb-2">{{ $booking->room->description ?? 'No description available.' }}</p>
                         <div class="mb-2">
+                            <span class="font-semibold">Booked By:</span>
+                            {{ $booking->customer?->first_name ?? 'N/A' }} {{ $booking->customer?->last_name ?? '' }}
+                        </div>
+                        <div class="mb-2">
                             <span class="font-semibold">Check-in:</span>
                             {{ \Carbon\Carbon::parse($booking->checkin)->format('F d, Y') }}
                         </div>

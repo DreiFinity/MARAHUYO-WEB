@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="border-t border-b border-gray-100 py-6 mb-8">
-                    <p class="text-gray-600 text-center">A confirmation email has been sent to <span class="font-medium">{{ $booking->email }}</span></p>
+                    <p class="text-gray-600 text-center">A confirmation email has been sent to <span class="font-medium">{{ $booking->user?->email }}</span></p>
                 </div>
 
                 <div class="space-y-6">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <p class="text-gray-500 text-sm">Guest Name</p>
-                            <p class="font-semibold text-gray-900 mt-1">{{ $booking->first_name }} {{ $booking->last_name }}</p>
+                            <p class="font-semibold text-gray-900 mt-1">{{ $booking->customer?->first_name }} {{ $booking->customer?->last_name }}</p>
                         </div>
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <p class="text-gray-500 text-sm">Check-in</p>
