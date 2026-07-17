@@ -60,3 +60,40 @@ VALUES
 ('301', 3, 3, 10000.00, 'Premiere Room with balcony'),
 ('401', 4, 4, 15000.00, 'Luxury Suite with sea view');
 ```
+
+
+
+USE marahuyodb;
+
+
+CREATE TABLE userlogin (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    password VARCHAR(255),
+    profile_picture VARCHAR(255),
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL
+);
+
+
+CREATE TABLE bookings (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED,
+    room_id INT NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    country VARCHAR(100) NOT NULL,
+    phone_code VARCHAR(10) NOT NULL,
+    phone_number VARCHAR(30) NOT NULL,
+    checkin DATE NOT NULL,
+    checkout DATE NOT NULL,
+    guests INT NOT NULL,
+    total_cost DECIMAL(10,2) NOT NULL,
+    status VARCHAR(50) DEFAULT 'confirmed',
+    created_at TIMESTAMP NULL DEFAULT NULL,
+    updated_at TIMESTAMP NULL DEFAULT NULL,
+    CONSTRAINT fk_bookings_user FOREIGN KEY (user_id) REFERENCES userlogin(id) ON DELETE CASCADE,
+    CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES rooms(id)
+);

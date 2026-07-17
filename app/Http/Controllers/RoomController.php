@@ -52,6 +52,9 @@ class RoomController extends Controller
     
         return view('pages.booking1', ['rooms' => $availableRooms]);
     }
+
+    
+
 }
 
 // This method retrieves available rooms based on the check-in and check-out dates,
