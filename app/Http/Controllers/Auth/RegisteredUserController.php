@@ -37,6 +37,7 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
             'profile_picture' => 'nullable|image|max:10048',
+            'address' => 'nullable|string|max:500',
         ]);
 
         $profilePicturePath = null;
@@ -53,6 +54,7 @@ class RegisteredUserController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'profile_picture' => $profilePicturePath,
+            'address' => $request->address,
         ]);
 
         Auth::login($user);

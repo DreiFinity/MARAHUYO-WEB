@@ -69,86 +69,83 @@
                     <a href="/contacts" class="text-gray-700 hover:text-blue-600">Contact</a>
                 </div>
 
-                <!-- Right: Login/Signup/Profile -->
-                <div class="ml-auto flex items-center space-x-2 mr-2">
-                    @guest
-                        <!-- User icon as placeholder -->
-                        <span
-                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 border-2 border-gray-300">
-                            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5.121 17.804A9 9 0 1112 21a9 9 0 01-6.879-3.196z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            <!-- Right: Login/Signup/Profile -->
+            <div class="ml-auto flex items-center space-x-2 mr-2">
+                @guest
+                    <!-- User icon as placeholder -->
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 border-2 border-gray-300">
+                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9 9 0 1112 21a9 9 0 01-6.879-3.196z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </span>
+                    <button id="openLogin"
+                        class="flex items-center justify-center text-sm font-semibold border px-4 py-2 rounded-lg hover:bg-[#CCCCCC] transition h-10 min-w-[90px]">
+                        <span>Log In</span>
+                    </button>
+                    <button type="button" onclick="openSignUpModal()"
+                        class="text-sm font-semibold px-4 py-2 bg-[#056594] text-white border rounded-lg hover:bg-[#04547C] ml-2 flex items-center justify-center transition h-10 min-w-[90px]">
+                        Sign Up
+                    </button>
+                @endguest
+                @auth
+                    <div class="relative" id="profileDropdownWrapper">
+                        <button id="profileDropdownBtn" type="button" class="flex items-center focus:outline-none">
+                            <img src="{{ Auth::user()->customer?->profile_picture ? asset('storage/' . Auth::user()->customer->profile_picture) : asset('images/default-avatar.svg') }}"
+                                alt="Profile" class="w-10 h-10 rounded-full border-2 border-gray-300 object-cover" />
+                            <span
+                                class="ml-2 text-gray-800 font-semibold hidden md:inline">{{ Auth::user()->customer?->first_name ?? 'User' }}</span>
+                            <svg class="w-4 h-4 ml-1 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
-                        </span>
-                        <button id="openLogin"
-                            class="flex items-center justify-center text-sm font-semibold border px-4 py-2 rounded-lg hover:bg-[#CCCCCC] transition h-10 min-w-[90px]">
-                            <span>Log In</span>
                         </button>
-                        <button type="button" onclick="openSignUpModal()"
-                            class="text-sm font-semibold px-4 py-2 bg-[#056594] text-white border rounded-lg hover:bg-[#04547C] ml-2 flex items-center justify-center transition h-10 min-w-[90px]">
-                            Sign Up
-                        </button>
-                    @endguest
-                    @auth
-                        <div class="relative" id="profileDropdownWrapper">
-                            <button id="profileDropdownBtn" type="button" class="flex items-center focus:outline-none">
-                                <img src="{{ Auth::user()->customer?->profile_picture ? asset('storage/' . Auth::user()->customer->profile_picture) : asset('images/default-avatar.svg') }}"
-                                    alt="Profile" class="w-10 h-10 rounded-full border-2 border-gray-300 object-cover" />
-                                <span
-                                    class="ml-2 text-gray-800 font-semibold hidden md:inline">{{ Auth::user()->customer?->first_name ?? 'User' }}</span>
-                                <svg class="w-4 h-4 ml-1 text-gray-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div id="profileDropdownMenu"
-                                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50 hidden">
-                                <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="/bookings" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Bookings</a>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit"
-                                        class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</button>
-                                </form>
-                            </div>
+                        <div id="profileDropdownMenu"
+                            class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50 hidden">
+                            <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+                            <a href="/bookings" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Bookings</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</button>
+                            </form>
                         </div>
-                    @endauth
-
-                    <!-- Mobile Menu Button (always last in flex, rightmost) -->
-                    <div class="md:hidden ml-2">
-                        <button id="menu-button" class="text-gray-700 focus:outline-none">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
                     </div>
+                @endauth
+
+                <!-- Mobile Menu Button (always last in flex, rightmost) -->
+                <div class="md:hidden ml-2">
+                    <button id="menu-button" class="text-gray-700 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
+        </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="md:hidden hidden px-4 pb-4 flex flex-col space-y-2 bg-white shadow-lg rounded-b-lg">
+        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 flex flex-col space-y-2 bg-white shadow-lg rounded-b-lg">
             <a href="/" class="text-gray-700 hover:text-blue-600 py-2">Home</a>
             <a href="#about" class="text-gray-700 hover:text-blue-600 py-2">About</a>
             <a href="/rooms" class="text-gray-700 hover:text-blue-600 py-2">Rooms</a>
             <a href="/dining" class="text-gray-700 hover:text-blue-600 py-2">Services</a>
             <a href="/contacts" class="text-gray-700 hover:text-blue-600 py-2">Contact</a>
-            @guest
-                <button id="openLoginMobile" class="text-gray-700 hover:text-blue-600 py-2 text-left">Log In</button>
-                <button type="button" onclick="openSignUpModal()"
-                    class="text-gray-700 hover:text-blue-600 py-2 text-left">Sign Up</button>
-            @else
-                <a href="/profile" class="text-gray-700 hover:text-blue-600 py-2">Profile</a>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="text-gray-700 hover:text-blue-600 py-2 text-left w-full">Logout</button>
-                </form>
-            @endguest
+        @guest
+            <button id="openLoginMobile" class="text-gray-700 hover:text-blue-600 py-2 text-left">Log In</button>
+            <button type="button" onclick="openSignUpModal()" class="text-gray-700 hover:text-blue-600 py-2 text-left">Sign
+                Up</button>
+        @else
+            <a href="/profile" class="text-gray-700 hover:text-blue-600 py-2">Profile</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="text-gray-700 hover:text-blue-600 py-2 text-left w-full">Logout</button>
+            </form>
+        @endguest
         </div>
 
         <script>
@@ -1241,10 +1238,17 @@
 
             <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
-                <div class="mb-4">
-                    <label class="block text-gray-700 mb-1" for="signup-name">Name</label>
-                    <input id="signup-name" name="name" type="text"
-                        class="w-full border border-gray-300 rounded px-4 py-2" required>
+                <div class="mb-4 flex space-x-2">
+                    <div class="w-1/2">
+                        <label class="block text-gray-700 mb-1" for="signup-first-name">First Name</label>
+                        <input id="signup-first-name" name="first_name" type="text"
+                            class="w-full border border-gray-300 rounded px-4 py-2" required>
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-gray-700 mb-1" for="signup-last-name">Last Name</label>
+                        <input id="signup-last-name" name="last_name" type="text"
+                            class="w-full border border-gray-300 rounded px-4 py-2" required>
+                    </div>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 mb-1" for="signup-email">Email</label>
@@ -1260,6 +1264,11 @@
                     <label class="block text-gray-700 mb-1" for="signup-password-confirm">Confirm Password</label>
                     <input id="signup-password-confirm" name="password_confirmation" type="password"
                         class="w-full border border-gray-300 rounded px-4 py-2" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-1" for="signup-address">Address</label>
+                    <input id="signup-address" name="address" type="text"
+                        class="w-full border border-gray-300 rounded px-4 py-2">
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 mb-1" for="signup-profile-picture">Profile Picture</label>

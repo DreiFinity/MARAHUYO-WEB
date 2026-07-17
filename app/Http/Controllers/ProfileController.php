@@ -41,6 +41,7 @@ class ProfileController extends Controller
         $customerData = [
             'first_name' => $request->validated('first_name'),
             'last_name' => $request->validated('last_name'),
+            'address' => $request->validated('address'),
         ];
 
         if ($user->customer) {
